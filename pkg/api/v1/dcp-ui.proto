@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package v1;
+option go_package = "github.com/bhojpur/dcp/pkg/api/v1";
+import "dcp.proto";
+
+message ListCloudSpecsRequest{}
+
+message ListCloudSpecsResponse {
+    Repository repo = 1;
+    string name = 2;
+    string path = 3;
+    string description = 4;
+    repeated DesiredAnnotation arguments = 5;
+}
+
+// DesiredAnnotation describes an annotation a Cloud should have
+message DesiredAnnotation {
+    string name = 1;
+    bool required = 2;
+    string description = 3;
+}
+
+message IsReadOnlyRequest {}
+
+message IsReadOnlyResponse {
+    bool readonly = 1;
+}
+
+// DcpUI offers services intended for the Bhojpur DCP web user interface
+service DcpUI {
+    // ListCloudSpecs returns a list of Cloud(s) that can be started through the UI.
+    rpc ListCloudSpecs(ListCloudSpecsRequest) returns (stream ListCloudSpecsResponse) {};
+
+    // IsReadOnly returns true if the UI is readonly.
+    rpc IsReadOnly(IsReadOnlyRequest) returns (IsReadOnlyResponse) {};
+}
