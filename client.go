@@ -24,11 +24,16 @@
 package main
 
 import (
+	"os"
+
 	cmd "github.com/bhojpur/dcp/cmd/client"
 
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
 func main() {
-	cmd.Execute()
+	cmd := cmd.NewClientCommand()
+	if err := cmd.Execute(); err != nil {
+		os.Exit(1)
+	}
 }

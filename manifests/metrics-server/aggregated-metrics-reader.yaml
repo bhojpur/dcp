@@ -1,0 +1,12 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.bhojpur.net/v1
+metadata:
+  name: system:aggregated-metrics-reader
+  labels:
+    rbac.authorization.bhojpur.net/aggregate-to-view: "true"
+    rbac.authorization.bhojpur.net/aggregate-to-edit: "true"
+    rbac.authorization.bhojpur.net/aggregate-to-admin: "true"
+rules:
+- apiGroups: ["metrics.bhojpur.net"]
+  resources: ["pods", "nodes"]
+  verbs: ["get", "list", "watch"]

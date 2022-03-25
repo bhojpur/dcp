@@ -1,0 +1,61 @@
+package server
+
+// Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+import (
+	"context"
+
+	"go.etcd.io/etcd/api/v3/etcdserverpb"
+	"go.etcd.io/etcd/api/v3/mvccpb"
+)
+
+func isCompact(txn *etcdserverpb.TxnRequest) bool {
+	// See https://github.com/kubernetes/kubernetes/blob/442a69c3bdf6fe8e525b05887e57d89db1e2f3a5/staging/src/k8s.io/apiserver/pkg/storage/etcd3/compact.go#L72
+	return len(txn.Compare) == 1 &&
+		txn.Compare[0].Target == etcdserverpb.Compare_VERSION &&
+		txn.Compare[0].Result == etcdserverpb.Compare_EQUAL &&
+		len(txn.Success) == 1 &&
+		txn.Success[0].GetRequestPut() != nil &&
+		len(txn.Failure) == 1 &&
+		txn.Failure[0].GetRequestRange() != nil &&
+		string(txn.Compare[0].Key) == "compact_rev_key"
+}
+
+func (l *LimitedServer) compact(ctx context.Context) (*etcdserverpb.TxnResponse, error) {
+	// return comparison failure so that the apiserver does not bother compacting
+	return &etcdserverpb.TxnResponse{
+		Header:    &etcdserverpb.ResponseHeader{},
+		Succeeded: false,
+		Responses: []*etcdserverpb.ResponseOp{
+			{
+				Response: &etcdserverpb.ResponseOp_ResponseRange{
+					ResponseRange: &etcdserverpb.RangeResponse{
+						Header: &etcdserverpb.ResponseHeader{},
+						Kvs: []*mvccpb.KeyValue{
+							&mvccpb.KeyValue{},
+						},
+						Count: 1,
+					},
+				},
+			},
+		},
+	}, nil
+}

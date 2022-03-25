@@ -1,0 +1,24 @@
+# permissions for end users to edit dcpingresses.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dcpingress-editor-role
+rules:
+- apiGroups:
+  - apps.bhojpur.net
+  resources:
+  - dcpingresses
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps.bhojpur.net
+  resources:
+  - dcpingresses/status
+  verbs:
+  - get

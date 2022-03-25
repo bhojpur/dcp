@@ -24,13 +24,22 @@
 package main
 
 import (
-	cmd "github.com/bhojpur/dcp/cmd/server"
+	"flag"
+	"math/rand"
+	"time"
 
-	_ "github.com/bhojpur/dcp/pkg/webui"
+	cmd "github.com/bhojpur/dcp/cmd/server"
+	"k8s.io/apiserver/pkg/server"
+
 	_ "github.com/lib/pq"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
 func main() {
-	cmd.Execute()
+	rand.Seed(time.Now().UnixNano())
+	cmd := cmd.NewCmdStartEngine(server.SetupSignalHandler())
+	cmd.Flags().AddGoFlagSet(flag.CommandLine)
+	if err := cmd.Execute(); err != nil {
+		panic(err)
+	}
 }

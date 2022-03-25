@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manager
+  namespace: kube-system
+  labels:
+    control-plane: dcp-app-manager
+spec:
+  selector:
+    matchLabels:
+      control-plane: dcp-app-manager
+  replicas: 2 
+  template:
+    metadata:
+      labels:
+        control-plane: dcp-app-manager
+    spec:
+      tolerations:
+      nodeSelector:
+      priorityClassName: system-node-critical
+      containers:
+      - command:
+        - /usr/local/bin/dcp-app-manager
+        args:
+        - --enable-leader-election
+        - --v=4
+        image: controller:latest
+        imagePullPolicy: Always 
+        name: manager
+      terminationGracePeriodSeconds: 10

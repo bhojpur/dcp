@@ -1,0 +1,144 @@
+
+---
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: mutating-webhook-configuration
+webhooks:
+- clientConfig:
+    caBundle: Cg==
+    service:
+      name: webhook-service
+      namespace: system
+      path: /mutate-apps-bhojpur-net-v1alpha1-nodepool
+  failurePolicy: Fail
+  name: mnodepool.kb.io
+  rules:
+  - apiGroups:
+    - apps.bhojpur.net
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - nodepools
+- clientConfig:
+    caBundle: Cg==
+    service:
+      name: webhook-service
+      namespace: system
+      path: /mutate-apps-bhojpur-net-v1alpha1-uniteddeployment
+  failurePolicy: Fail
+  name: muniteddeployment.kb.io
+  rules:
+  - apiGroups:
+    - apps.bhojpur.net
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - uniteddeployments
+- clientConfig:
+    caBundle: Cg==
+    service:
+      name: webhook-service
+      namespace: system
+      path: /mutate-apps-bhojpur-net-v1alpha1-dcpappdaemon
+  failurePolicy: Fail
+  name: mdcpappdaemon.kb.io
+  rules:
+  - apiGroups:
+    - apps.bhojpur.net
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - dcpappdaemons
+
+---
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  creationTimestamp: null
+  name: validating-webhook-configuration
+webhooks:
+- clientConfig:
+    caBundle: Cg==
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-apps-bhojpur-net-v1alpha1-nodepool
+  failurePolicy: Fail
+  name: vnodepool.kb.io
+  rules:
+  - apiGroups:
+    - apps.bhojpur.net
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - nodepools
+- clientConfig:
+    caBundle: Cg==
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-apps-bhojpur-net-v1alpha1-uniteddeployment
+  failurePolicy: Fail
+  name: vuniteddeployment.kb.io
+  rules:
+  - apiGroups:
+    - apps.bhojpur.net
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - uniteddeployments
+- clientConfig:
+    caBundle: Cg==
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-apps-bhojpur-net-v1alpha1-dcpappdaemon
+  failurePolicy: Fail
+  name: vdcpappdaemon.kb.io
+  rules:
+  - apiGroups:
+    - apps.bhojpur.net
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - dcpappdaemons
+- clientConfig:
+    caBundle: Cg==
+    service:
+      name: webhook-service
+      namespace: system
+      path: /validate-apps-bhojpur-net-v1alpha1-dcpingress
+  failurePolicy: Fail
+  name: vdcpingress.kb.io
+  rules:
+  - apiGroups:
+    - apps.bhojpur.net
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - dcpingresses

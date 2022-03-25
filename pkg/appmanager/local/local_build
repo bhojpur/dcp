@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -ex
+
+curr_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo $curr_dir
+
+# remove old
+[ -f app-manager ] && rm app-manager
+
+# compile
+cd ../../../
+rm -Rf _output
+GOOS=linux make build WHAT=cmd/app-manager
+
+# come back to working dir
+cd $curr_dir
+cp /Users/shashi.rai/dcp/_output/bin/linux/amd64/app-manager app-manager
+docker build . -t bhojpur/appmanager:app
+docker push bhojpur/appmanager:app

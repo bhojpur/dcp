@@ -1,0 +1,20 @@
+# permissions for end users to view dcpingresses.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dcpingress-viewer-role
+rules:
+- apiGroups:
+  - apps.bhojpur.net
+  resources:
+  - dcpingresses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.bhojpur.net
+  resources:
+  - dcpingresses/status
+  verbs:
+  - get
