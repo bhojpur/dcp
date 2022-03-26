@@ -32,6 +32,6 @@ var (
 		Name:   "config,c",
 		Usage:  "(config) Load configuration from `FILE`",
 		EnvVar: version.ProgramUpper + "_CONFIG_FILE",
-		Value:  "/etc/rancher/" + version.Program + "/config.yaml",
+		Value:  "/etc/bhojpur/" + version.Program + "/config.yaml",
 	}
 )

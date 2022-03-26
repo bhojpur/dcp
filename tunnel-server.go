@@ -1,5 +1,5 @@
-//go:build !tunnel-server
-// +build !tunnel-server
+//go:build tunnel-server
+// +build tunnel-server
 
 package main
 

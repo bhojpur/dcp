@@ -1,0 +1,78 @@
+#!/bin/bash
+set -e -x
+
+cd $(dirname $0)/..
+
+ARCH=${DRONE_STAGE_ARCH:-$(arch)}
+. ./scripts/version.sh
+
+if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(\-[^\+]*)?\+dcp.+$ ]]; then
+  echo "Bhojpur DCP version $VERSION does not match regex for rpm upload"
+  exit 0
+fi
+
+TMPDIR=$(mktemp -d)
+cleanup() {
+  exit_code=$?
+  trap - EXIT INT
+  rm -rf ${TMPDIR}
+  exit ${exit_code}
+}
+trap cleanup EXIT INT
+
+export HOME=${TMPDIR}
+
+BIN_SUFFIX=""
+if [ ${ARCH} = aarch64 ] || [ ${ARCH} = arm64 ]; then
+    BIN_SUFFIX="-arm64"
+elif [ ${ARCH} = armv7l ] || [ ${ARCH} = arm ]; then
+    BIN_SUFFIX="-armhf"
+fi
+
+# capture version of Bhojpur DCP
+dcp_version=$(sed -E -e 's/^v([^-+]*).*$/\1/' <<< $VERSION)
+# capture pre-release and metadata information of Bhojpur DCP
+dcp_release=$(sed -E -e 's/\+dcp/+/; s/\+/-/g; s/^[^-]*//; s/^--/dev-/; s/-+/./g; s/^\.+//; s/\.+$//;' <<< $VERSION)
+# dcp-selinux policy version needed for functionality
+dcp_policyver=0.1-1
+
+rpmbuild \
+  --define "dcp_version ${dcp_version}" \
+  --define "dcp_release ${dcp_release}" \
+  --define "dcp_policyver ${dcp_policyver}" \
+  --define "dcp_binary dcp${BIN_SUFFIX}" \
+  --define "_sourcedir ${PWD}" \
+  --define "_specdir ${PWD}" \
+  --define "_builddir ${PWD}" \
+  --define "_srcrpmdir ${PWD}" \
+  --define "_rpmdir ${PWD}/dist/rpm" \
+  --define "_buildrootdir ${PWD}/.rpm-build" \
+  -bb package/rpm/dcp.spec
+
+if ! grep "BEGIN PGP PRIVATE KEY BLOCK" <<<"$PRIVATE_KEY"; then
+  echo "PRIVATE_KEY not defined, skipping rpm sign and upload"
+  exit 0
+fi
+
+cat <<\EOF >~/.rpmmacros
+%_signature gpg
+%_gpg_name ci@bhojpur.net
+EOF
+gpg --import - <<<"$PRIVATE_KEY"
+
+expect <<EOF
+set timeout 60
+spawn sh -c "rpmsign --addsign dist/rpm/**/dcp-*.rpm"
+expect "Enter pass phrase:"
+send -- "$PRIVATE_KEY_PASS_PHRASE\r"
+expect eof
+lassign [wait] _ _ _ code
+exit \$code
+EOF
+
+if [ -z "$AWS_S3_BUCKET" ]; then
+  echo "AWS_S3_BUCKET skipping rpm upload"
+  exit 0
+fi
+
+rpm-s3 --bucket $AWS_S3_BUCKET dist/rpm/**/dcp-*.rpm

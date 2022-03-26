@@ -1,0 +1,130 @@
+#!/bin/bash
+set -e -x
+
+cd $(dirname $0)/..
+
+. ./scripts/version.sh
+
+GO=${GO-go}
+
+PKG="github.com/bhojpur/dcp"
+PKG_CONTAINERD="github.com/containerd/containerd"
+PKG_DCP_CONTAINERD="github.com/bhojpur/containerd"
+PKG_CRICTL="github.com/kubernetes-sigs/cri-tools/pkg"
+PKG_K8S_BASE="k8s.io/component-base"
+PKG_K8S_CLIENT="k8s.io/client-go/pkg"
+
+buildDate=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
+
+VERSIONFLAGS="
+    -X ${PKG}/pkg/cloud/version.Version=${VERSION}
+    -X ${PKG}/pkg/cloud/version.GitCommit=${COMMIT:0:8}
+
+    -X ${PKG_K8S_CLIENT}/version.gitVersion=${VERSION}
+    -X ${PKG_K8S_CLIENT}/version.gitCommit=${COMMIT}
+    -X ${PKG_K8S_CLIENT}/version.gitTreeState=${TREE_STATE}
+    -X ${PKG_K8S_CLIENT}/version.buildDate=${buildDate}
+
+    -X ${PKG_K8S_BASE}/version.gitVersion=${VERSION}
+    -X ${PKG_K8S_BASE}/version.gitCommit=${COMMIT}
+    -X ${PKG_K8S_BASE}/version.gitTreeState=${TREE_STATE}
+    -X ${PKG_K8S_BASE}/version.buildDate=${buildDate}
+
+    -X ${PKG_CRICTL}/version.Version=${VERSION_CRICTL}
+
+    -X ${PKG_CONTAINERD}/version.Version=${VERSION_CONTAINERD}
+    -X ${PKG_CONTAINERD}/version.Package=${PKG_DCP_CONTAINERD}
+
+    -X ${PKG_CONTAINERD}/version.Version=${VERSION_CONTAINERD}
+    -X ${PKG_CONTAINERD}/version.Package=${PKG_DCP_CONTAINERD}
+"
+LDFLAGS="
+    -w -s"
+
+STATIC="
+    -extldflags '-static -lm -ldl -lz -lpthread'
+"
+TAGS="apparmor seccomp netcgo osusergo providerless"
+RUNC_TAGS="apparmor seccomp"
+RUNC_STATIC="static"
+
+if [ "$SELINUX" = "true" ]; then
+    TAGS="$TAGS selinux"
+    RUNC_TAGS="$RUNC_TAGS selinux"
+fi
+
+if [ "$STATIC_BUILD" != "true" ]; then
+    STATIC="
+"
+    RUNC_STATIC=""
+else
+    TAGS="static_build libsqlite3 $TAGS"
+fi
+
+mkdir -p bin
+
+if [ ${ARCH} = armv7l ] || [ ${ARCH} = arm ]; then
+    export GOARCH="arm"
+    export GOARM="7"
+fi
+
+rm -f \
+    bin/dcp-agent \
+    bin/dcp-server \
+    bin/dcp-etcd-snapshot \
+    bin/dcp-secrets-encrypt \
+    bin/dcp-certificate \
+    bin/kubectl \
+    bin/crictl \
+    bin/ctr \
+    bin/containerd \
+    bin/containerd-shim \
+    bin/containerd-shim-runc-v2 \
+    bin/runc
+
+cleanup() {
+    exit_status=$?
+    rm -rf $TMPDIR
+    exit ${exit_status}
+}
+
+INSTALLBIN=$(pwd)/bin
+if [ ! -x ${INSTALLBIN}/cni ]; then
+(
+    echo Building cni
+    TMPDIR=$(mktemp -d)
+    trap cleanup EXIT
+    WORKDIR=$TMPDIR/src/github.com/containernetworking/plugins
+    git clone -b $VERSION_CNIPLUGINS https://github.com/bhojpur/plugins.git $WORKDIR
+    cd $WORKDIR
+    GO111MODULE=off GOPATH=$TMPDIR CGO_ENABLED=0 "${GO}" build -tags "$TAGS" -ldflags "$LDFLAGS $STATIC" -o $INSTALLBIN/cni
+)
+fi
+
+echo Building Bhojpur DCP
+CGO_ENABLED=1 "${GO}" build -tags "$TAGS" -ldflags "$VERSIONFLAGS $LDFLAGS $STATIC" -o bin/dcp ./cmd/server/main.go
+ln -s dcp ./bin/dcp-agent
+ln -s dcp ./bin/dcp-server
+ln -s dcp ./bin/dcp-etcd-snapshot
+ln -s dcp ./bin/dcp-secrets-encrypt
+ln -s dcp ./bin/dcp-certificate
+ln -s dcp ./bin/kubectl
+ln -s dcp ./bin/crictl
+ln -s dcp ./bin/ctr
+
+export GOPATH=$(pwd)/build
+
+echo Building containerd
+pushd ./build/src/github.com/containerd/containerd
+TAGS="${TAGS/netcgo/netgo}"
+CGO_ENABLED=1 "${GO}" build -tags "$TAGS" -ldflags "$VERSIONFLAGS $LDFLAGS $STATIC" -o bin/containerd              ./cmd/containerd
+CGO_ENABLED=1 "${GO}" build -tags "$TAGS" -ldflags "$VERSIONFLAGS $LDFLAGS $STATIC" -o bin/containerd-shim-runc-v2 ./cmd/containerd-shim-runc-v2
+popd
+cp -vf ./build/src/github.com/containerd/containerd/bin/* ./bin/
+
+echo Building runc
+pushd ./build/src/github.com/opencontainers/runc
+rm -f runc
+make EXTRA_LDFLAGS="-w -s" BUILDTAGS="$RUNC_TAGS" $RUNC_STATIC
+popd
+cp -vf ./build/src/github.com/opencontainers/runc/runc ./bin/

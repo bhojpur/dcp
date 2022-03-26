@@ -125,7 +125,7 @@ var (
 	ServerConfig Server
 	DataDirFlag  = cli.StringFlag{
 		Name:        "data-dir,d",
-		Usage:       "(data) Folder to hold state default /var/lib/rancher/" + version.Program + " or ${HOME}/.rancher/" + version.Program + " if not root",
+		Usage:       "(data) Folder to hold state default /var/lib/bhojpur/" + version.Program + " or ${HOME}/.bhojpur/" + version.Program + " if not root",
 		Destination: &ServerConfig.DataDir,
 	}
 	ServerToken = cli.StringFlag{

@@ -31,7 +31,7 @@ var DefaultParser = &Parser{
 	After:         []string{"server", "agent", "etcd-snapshot:1"},
 	FlagNames:     []string{"--config", "-c"},
 	EnvName:       version.ProgramUpper + "_CONFIG_FILE",
-	DefaultConfig: "/etc/rancher/" + version.Program + "/config.yaml",
+	DefaultConfig: "/etc/bhojpur/" + version.Program + "/config.yaml",
 	ValidFlags:    map[string][]cli.Flag{"server": cmds.ServerFlags, "etcd-snapshot": cmds.EtcdSnapshotFlags},
 }
 

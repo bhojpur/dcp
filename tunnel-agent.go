@@ -1,5 +1,5 @@
-//go:build !tunnel-agent
-// +build !tunnel-agent
+//go:build tunnel-agent
+// +build tunnel-agent
 
 package main
 

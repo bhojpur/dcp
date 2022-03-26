@@ -1,0 +1,7 @@
+./bin
+./etc
+./pkg/cloud/data/zz_generated_bindata.go
+./.vagrant
+./.cache
+./.dapper
+./.trash-cache

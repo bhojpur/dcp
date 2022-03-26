@@ -305,7 +305,7 @@ func stageFiles(ctx context.Context, sc *Context, controlConfig *config.Control)
 		dataDir)
 }
 
-// registryTemplate behaves like the system_default_registry template in Rancher helm charts,
+// registryTemplate behaves like the system_default_registry template in Bhojpur helm charts,
 // and returns the registry value with a trailing forward slash if the registry string is not empty.
 // If it is empty, it is passed through as a no-op.
 func registryTemplate(registry string) string {

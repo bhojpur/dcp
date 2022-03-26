@@ -1,6 +1,6 @@
 module github.com/bhojpur/dcp
 
-go 1.17
+go 1.18
 
 require (
 	github.com/lib/pq v1.10.4
@@ -8,9 +8,6 @@ require (
 	github.com/spf13/cobra v1.4.0
 	google.golang.org/grpc v1.45.0
 	google.golang.org/protobuf v1.28.0
-	k8s.io/apimachinery v0.23.5
-	k8s.io/client-go v1.5.2
-	k8s.io/kubernetes v1.21.0
 )
 
 require (
@@ -207,6 +204,8 @@ require (
 	k8s.io/api v0.23.5
 	k8s.io/apiextensions-apiserver v0.23.4 // indirect
 	k8s.io/apiserver v0.23.5
+	k8s.io/apimachinery v0.20.6
+	k8s.io/client-go v1.5.2
 	k8s.io/cli-runtime v0.23.5 // indirect
 	k8s.io/cloud-provider v0.23.5 // indirect
 	k8s.io/cluster-bootstrap v0.23.5 // indirect
@@ -228,50 +227,62 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace k8s.io/api => k8s.io/api v0.20.4
-
-replace k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.20.4
-
-replace k8s.io/apimachinery => k8s.io/apimachinery v0.20.4
-
-replace k8s.io/apiserver => k8s.io/apiserver v0.20.4
-
-replace k8s.io/cli-runtime => k8s.io/cli-runtime v0.20.4
-
-replace k8s.io/client-go => k8s.io/client-go v0.20.4
-
-replace k8s.io/cloud-provider => k8s.io/cloud-provider v0.20.4
-
-replace k8s.io/cluster-bootstrap => k8s.io/cluster-bootstrap v0.20.4
-
-replace k8s.io/code-generator => k8s.io/code-generator v0.20.4
-
-replace k8s.io/component-base => k8s.io/component-base v0.20.4
-
-replace k8s.io/cri-api => k8s.io/cri-api v0.20.4
-
-replace k8s.io/csi-translation-lib => k8s.io/csi-translation-lib v0.20.4
-
-replace k8s.io/kube-aggregator => k8s.io/kube-aggregator v0.20.4
-
-replace k8s.io/kube-controller-manager => k8s.io/kube-controller-manager v0.20.4
-
-replace k8s.io/kube-proxy => k8s.io/kube-proxy v0.20.4
-
-replace k8s.io/kube-scheduler => k8s.io/kube-scheduler v0.20.4
-
-replace k8s.io/kubelet => k8s.io/kubelet v0.20.4
-
-replace k8s.io/legacy-cloud-providers => k8s.io/legacy-cloud-providers v0.20.4
-
-replace k8s.io/metrics => k8s.io/metrics v0.20.4
-
-replace k8s.io/sample-apiserver => k8s.io/sample-apiserver v0.20.4
-
-replace k8s.io/component-helpers => k8s.io/component-helpers v0.20.4
-
-replace k8s.io/controller-manager => k8s.io/controller-manager v0.20.4
-
-replace k8s.io/kubectl => k8s.io/kubectl v0.20.4
-
-replace k8s.io/mount-utils => k8s.io/mount-utils v0.20.4
+replace (
+	github.com/Microsoft/hcsshim => github.com/Microsoft/hcsshim v0.8.22
+	github.com/benmoss/go-powershell => github.com/bhojpur/go-powershell v0.0.0-20201118222746-51f4c451fbd7
+	github.com/containerd/containerd => github.com/bhojpur/containerd v1.5.10 // dcp-release/1.5
+	github.com/coreos/go-systemd => github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e
+	github.com/docker/distribution => github.com/docker/distribution v2.7.1+incompatible
+	github.com/docker/docker => github.com/docker/docker v20.10.7+incompatible
+	github.com/docker/libnetwork => github.com/docker/libnetwork v0.8.0-dev.2.0.20190624125649-f0e46a78ea34
+	github.com/golang/protobuf => github.com/golang/protobuf v1.5.2
+	github.com/google/cadvisor => github.com/bhojpur/cadvisor v0.43.0
+	github.com/googleapis/gax-go/v2 => github.com/googleapis/gax-go/v2 v2.0.5
+	github.com/juju/errors => github.com/bhojpur/nocode v0.0.0-20200630202308-cb097102c09f
+	github.com/kubernetes-sigs/cri-tools => github.com/bhojpur/cri-tools v1.22.0
+	github.com/opencontainers/runc => github.com/opencontainers/runc v1.0.3
+	github.com/opencontainers/runtime-spec => github.com/opencontainers/runtime-spec v1.0.3-0.20210326190908-1c3f411f0417
+	github.com/rancher/wrangler => github.com/rancher/wrangler v0.8.11-0.20220211163748-d5a8ee98be5f
+	go.etcd.io/etcd/api/v3 => github.com/bhojpur/etcd/api/v3 v3.5.1
+	go.etcd.io/etcd/client/v3 => github.com/bhojpur/etcd/client/v3 v3.5.1
+	go.etcd.io/etcd/etcdutl/v3 => github.com/bhojpur/etcd/etcdutl/v3 v3.5.1
+	go.etcd.io/etcd/server/v3 => github.com/bhojpur/etcd/server/v3 v3.5.1
+	golang.org/x/crypto => golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
+	golang.org/x/net => golang.org/x/net v0.0.0-20210825183410-e898025ed96a
+	golang.org/x/sys => golang.org/x/sys v0.0.0-20210831042530-f4d43177bf5e
+	google.golang.org/genproto => google.golang.org/genproto v0.0.0-20210831024726-fe130286e0e2
+	google.golang.org/grpc => google.golang.org/grpc v1.40.0
+	gopkg.in/square/go-jose.v2 => gopkg.in/square/go-jose.v2 v2.2.2
+	k8s.io/api => github.com/bhojpur/kubernetes/staging/src/k8s.io/api v1.23.5-dcp
+	k8s.io/apiextensions-apiserver => github.com/bhojpur/kubernetes/staging/src/k8s.io/apiextensions-apiserver v1.23.5-dcp
+	k8s.io/apimachinery => github.com/bhojpur/kubernetes/staging/src/k8s.io/apimachinery v1.23.5-dcp
+	k8s.io/apiserver => github.com/bhojpur/kubernetes/staging/src/k8s.io/apiserver v1.23.5-dcp
+	k8s.io/cli-runtime => github.com/bhojpur/kubernetes/staging/src/k8s.io/cli-runtime v1.23.5-dcp
+	k8s.io/client-go => github.com/bhojpur/kubernetes/staging/src/k8s.io/client-go v1.23.5-dcp
+	k8s.io/cloud-provider => github.com/bhojpur/kubernetes/staging/src/k8s.io/cloud-provider v1.23.5-dcp
+	k8s.io/cluster-bootstrap => github.com/bhojpur/kubernetes/staging/src/k8s.io/cluster-bootstrap v1.23.5-dcp
+	k8s.io/code-generator => github.com/bhojpur/kubernetes/staging/src/k8s.io/code-generator v1.23.5-dcp
+	k8s.io/component-base => github.com/bhojpur/kubernetes/staging/src/k8s.io/component-base v1.23.5-dcp
+	k8s.io/component-helpers => github.com/bhojpur/kubernetes/staging/src/k8s.io/component-helpers v1.23.5-dcp
+	k8s.io/controller-manager => github.com/bhojpur/kubernetes/staging/src/k8s.io/controller-manager v1.23.5-dcp
+	k8s.io/cri-api => github.com/bhojpur/kubernetes/staging/src/k8s.io/cri-api v1.23.5-dcp
+	k8s.io/csi-translation-lib => github.com/bhojpur/kubernetes/staging/src/k8s.io/csi-translation-lib v1.23.5-dcp
+	k8s.io/klog => github.com/bhojpur/klog v1.0.0 // dcp-release-1.x
+	k8s.io/klog/v2 => github.com/bhojpur/klog/v2 v2.30.0 // dcp-main
+	k8s.io/kube-aggregator => github.com/bhojpur/kubernetes/staging/src/k8s.io/kube-aggregator v1.23.5-dcp
+	k8s.io/kube-controller-manager => github.com/bhojpur/kubernetes/staging/src/k8s.io/kube-controller-manager v1.23.5-dcp
+	k8s.io/kube-proxy => github.com/bhojpur/kubernetes/staging/src/k8s.io/kube-proxy v1.23.5-dcp
+	k8s.io/kube-scheduler => github.com/bhojpur/kubernetes/staging/src/k8s.io/kube-scheduler v1.23.5-dcp
+	k8s.io/kubectl => github.com/bhojpur/kubernetes/staging/src/k8s.io/kubectl v1.23.5-dcp
+	k8s.io/kubelet => github.com/bhojpur/kubernetes/staging/src/k8s.io/kubelet v1.23.5-dcp
+	k8s.io/kubernetes => github.com/bhojpur/kubernetes v1.23.5-dcp
+	k8s.io/legacy-cloud-providers => github.com/bhojpur/kubernetes/staging/src/k8s.io/legacy-cloud-providers v1.23.5-dcp
+	k8s.io/metrics => github.com/bhojpur/kubernetes/staging/src/k8s.io/metrics v1.23.5-dcp
+	k8s.io/mount-utils => github.com/bhojpur/kubernetes/staging/src/k8s.io/mount-utils v1.23.5-dcp
+	k8s.io/node-api => github.com/bhojpur/kubernetes/staging/src/k8s.io/node-api v1.23.5-dcp
+	k8s.io/pod-security-admission => github.com/bhojpur/kubernetes/staging/src/k8s.io/pod-security-admission v1.23.5-dcp
+	k8s.io/sample-apiserver => github.com/bhojpur/kubernetes/staging/src/k8s.io/sample-apiserver v1.23.5-dcp
+	k8s.io/sample-cli-plugin => github.com/bhojpur/kubernetes/staging/src/k8s.io/sample-cli-plugin v1.23.5-dcp
+	k8s.io/sample-controller => github.com/bhojpur/kubernetes/staging/src/k8s.io/sample-controller v1.23.5-dcp
+	mvdan.cc/unparam => mvdan.cc/unparam v0.0.0-20210104141923-aac4ce9116a7
+)

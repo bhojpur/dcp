@@ -57,7 +57,7 @@ var (
 	daemonsetNodeLabel     = "svccontroller." + version.Program + ".bhojpur.net/enablelb"
 	daemonsetNodePoolLabel = "svccontroller." + version.Program + ".bhojpur.net/lbpool"
 	nodeSelectorLabel      = "svccontroller." + version.Program + ".bhojpur.net/nodeselector"
-	DefaultLBImage         = "rancher/klipper-lb:v0.3.4"
+	DefaultLBImage         = "bhojpur/klipper-lb:v0.3.4"
 )
 
 const (

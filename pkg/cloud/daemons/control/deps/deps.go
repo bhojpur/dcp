@@ -370,7 +370,7 @@ func genClientCerts(config *config.Control) error {
 	if _, err = factory("system:kube-proxy", nil, runtime.ClientKubeProxyCert, runtime.ClientKubeProxyKey); err != nil {
 		return err
 	}
-	// This user (system:k3s-controller by default) must be bound to a role in rolebindings.yaml or the downstream equivalent
+	// This user (system:dcp-controller by default) must be bound to a role in rolebindings.yaml or the downstream equivalent
 	if _, err = factory("system:"+version.Program+"-controller", nil, runtime.ClientDcpControllerCert, runtime.ClientDcpControllerKey); err != nil {
 		return err
 	}
