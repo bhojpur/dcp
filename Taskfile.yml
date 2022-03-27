@@ -47,6 +47,7 @@ tasks:
         - GOFLAGS=-mod=mod go build -o bin/tunnel-agent grid-tunnel-agent.go 
         - GOFLAGS=-mod=mod go build -o bin/dcpctl grid-client-engine.go 
         - GOFLAGS=-mod=mod go build -o bin/dcpsvr grid-server-engine.go
+        - GOFLAGS=-mod=mod go build -o bin/node-servant cmd/grid/node-servant.go
         - GOFLAGS=-mod=mod go build -o bin/controller-manager grid-controller-manager.go
         - GOFLAGS=-mod=mod go build -o bin/app-manager grid-app-manager.go
         - GOFLAGS=-mod=mod go build -o bin/helm-controller helm-controller.go

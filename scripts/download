@@ -133,4 +133,5 @@ EOF
 setup_tmp
 download_and_package_traefik
 
-cp scripts/wg-add.sh bin/aux/
+mkdir bin/aux
+cp scripts/wg-add.sh bin/aux

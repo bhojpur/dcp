@@ -1,0 +1,7 @@
+apiVersion: ${api_version}
+version: ${chart_version}${package_version}
+description: Installs the CRDs for Bhojpur DCP ${name}.
+name: ${name}-crd
+type: application
+annotations:
+  fleet.bhojpur.net/bundle-id: dcp

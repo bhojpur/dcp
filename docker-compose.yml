@@ -1,0 +1,50 @@
+# To run define DCP_TOKEN, DCP_VERSION is optional, e.g.:
+#   DCP_TOKEN=${RANDOM}${RANDOM}${RANDOM} docker-compose up
+
+version: '3'
+services:
+
+  server:
+    image: "bhojpur/dcp:${DCP_VERSION:-latest}"
+    command: server
+    tmpfs:
+    - /run
+    - /var/run
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+    privileged: true
+    restart: always
+    environment:
+    - DCP_TOKEN=${DCP_TOKEN:?err}
+    - DCP_KUBECONFIG_OUTPUT=/output/kubeconfig.yaml
+    - DCP_KUBECONFIG_MODE=666
+    volumes:
+    - dcp-server:/var/lib/bhojpur/dcp
+    # This is just so that we get the kubeconfig file out
+    - .:/output
+    ports:
+    - 6443:6443  # Kubernetes API Server
+    - 80:80      # Ingress controller port 80
+    - 443:443    # Ingress controller port 443
+
+  agent:
+    image: "bhojpur/dcp:${DCP_VERSION:-latest}"
+    tmpfs:
+    - /run
+    - /var/run
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+    privileged: true
+    restart: always
+    environment:
+    - DCP_URL=https://server:6443
+    - DCP_TOKEN=${DCP_TOKEN:?err}
+
+volumes:
+  dcp-server: {}
