@@ -29,7 +29,7 @@ import (
 	apirequest "k8s.io/apiserver/pkg/endpoints/request"
 	"k8s.io/apiserver/pkg/server"
 
-	"github.com/bhojpur/dcp/cmd/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/server/config"
 	"github.com/bhojpur/dcp/pkg/engine/cachemanager"
 	"github.com/bhojpur/dcp/pkg/engine/certificate/interfaces"
 	"github.com/bhojpur/dcp/pkg/engine/healthchecker"

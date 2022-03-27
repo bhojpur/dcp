@@ -20,3 +20,9 @@ You need a `Docker` instance to build from the source code.
 ```bash
 $ mkdir -p build/data && make download && make generate
 ```
+
+You can build it using `make` on Linux or Windows
+
+```bash
+$ make
+```

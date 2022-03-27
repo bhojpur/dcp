@@ -9,20 +9,47 @@ tasks:
         - echo "{{.GREETING}}"
         silent: true
 
-    build-tools:
-        desc: Build the software tools for build, release of Bhojpur DCP applications
+    build-cloud-tools:
+        desc: Build cloud runtime engine software for Bhojpur DCP realization
         cmds:
-        - GOFLAGS=-mod=mod go build -o bin/dcputl cmd/tools/main.go 
-        - chmod 755 bin/dcputl
-        - cp bin/dcputl $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/dcp cmd/cloud/dcp/main.go 
+        - chmod 755 bin/dcp
+        - cp bin/dcp $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/dcp-server cmd/cloud/server/main.go 
+        - chmod 755 bin/dcp-server
+        - cp bin/dcp-server $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/dcp-agent cmd/cloud/agent/main.go 
+        - chmod 755 bin/dcp-agent
+        - cp bin/dcp-agent $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/dcp-certificate cmd/cloud/cert/main.go 
+        - chmod 755 bin/dcp-certificate
+        - cp bin/dcp-certificate $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/containerd cmd/cloud/containerd/main.go 
+        - chmod 755 bin/containerd
+        - cp bin/containerd $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/ctr cmd/cloud/ctr/main.go 
+        - chmod 755 bin/ctr
+        - cp bin/ctr $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/dcp-secrets-encrypt cmd/cloud/encrypt/main.go 
+        - chmod 755 bin/dcp-secrets-encrypt
+        - cp bin/dcp-secrets-encrypt $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/dcp-etcd-snapshot cmd/cloud/etcsnapshot/main.go 
+        - chmod 755 bin/dcp-etcd-snapshot
+        - cp bin/dcp-etcd-snapshot $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/kubectl cmd/cloud/kubectl/main.go 
+        - chmod 755 bin/kubectl
+        - cp bin/kubectl $GOPATH/bin
 
-    build-web:
-        desc: Build the web application using tinygo
+    build-grid-tools:
+        desc: Build the distributed cloud platform management tools
         cmds:
-        - GOFLAGS=-mod=mod go build -o bin/dcpctl client.go 
-        - GOFLAGS=-mod=mod go build -o bin/dcpsvr server.go
-        #- GOFLAGS=-mod=mod tinygo build -o ./pkg/webui/wasm/main.wasm -target wasm ./pkg/webui/wasm/main.go 
-        #- cp ./pkg/webui/wasm/main.wasm internal/wasm
+        - GOFLAGS=-mod=mod go build -o bin/tunnel-server grid-tunnel-server.go 
+        - GOFLAGS=-mod=mod go build -o bin/tunnel-agent grid-tunnel-agent.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcpctl grid-client-engine.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcpsvr grid-server-engine.go
+        - GOFLAGS=-mod=mod go build -o bin/controller-manager grid-controller-manager.go
+        - GOFLAGS=-mod=mod go build -o bin/app-manager grid-app-manager.go
+        - GOFLAGS=-mod=mod go build -o bin/helm-controller helm-controller.go
 
     build-web-samples:
         desc: Build the web application using wasm
@@ -104,10 +131,9 @@ tasks:
         - GOFLAGS=-mod=mod go run native/main.go
 
     generate:
-        desc: Generate Go source code from Protool Buffers
+        desc: Generate Go source code
         cmds:
-        - protoc --go_out=plugins=grpc:. --go_opt=paths=source_relative pkg/api/v1/dcp.proto
-        - protoc --go_out=plugins=grpc:. --go_opt=paths=source_relative pkg/api/v1/dcp-ui.proto
+        - GOFLAGS=-mod=mod go generate ./...
 
     test:
         desc: Execute all the Unit Tests

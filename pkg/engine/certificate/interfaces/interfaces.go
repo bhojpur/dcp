@@ -23,7 +23,7 @@ package interfaces
 import (
 	"k8s.io/client-go/util/certificate"
 
-	"github.com/bhojpur/dcp/cmd/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/server/config"
 )
 
 // EngineCertificateManager is responsible for managing node certificate for Bhojpur DCP

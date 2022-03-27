@@ -24,7 +24,7 @@ rm -rf ${CONTAINERD_DIR}
 mkdir -p ${CHARTS_DIR}
 mkdir -p ${DATA_DIR}
 
-curl --compressed -sfL https://github.com/bhojpur/dcp/releases/download/${VERSION_ROOT}/dcp-${ARCH}.tar | tar xf - --exclude=bin/socat
+curl --compressed -sfL https://github.com/bhojpur/dcp/archive/refs/tags/${VERSION_ROOT}.tar.gz | tar -zxf - --exclude=bin/socat
 
 git clone --single-branch --branch=${VERSION_RUNC} --depth=1 https://github.com/opencontainers/runc ${RUNC_DIR}
 

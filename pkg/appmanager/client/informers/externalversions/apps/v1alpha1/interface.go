@@ -32,10 +32,10 @@ type Interface interface {
 	NodePools() NodePoolInformer
 	// UnitedDeployments returns a UnitedDeploymentInformer.
 	UnitedDeployments() UnitedDeploymentInformer
-	// DcpAppDaemons returns a DcpAppDaemonInformer.
-	DcpAppDaemons() DcpAppDaemonInformer
-	// DcpIngresses returns a DcpIngressInformer.
-	DcpIngresses() DcpIngressInformer
+	// DcpAppDaemons returns a AppDaemonInformer.
+	DcpAppDaemons() AppDaemonInformer
+	// DcpIngresses returns a IngressInformer.
+	DcpIngresses() IngressInformer
 }
 
 type version struct {
@@ -59,12 +59,12 @@ func (v *version) UnitedDeployments() UnitedDeploymentInformer {
 	return &unitedDeploymentInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
-// DcpAppDaemons returns a DcpAppDaemonInformer.
-func (v *version) DcpAppDaemons() DcpAppDaemonInformer {
+// DcpAppDaemons returns a AppDaemonInformer.
+func (v *version) DcpAppDaemons() AppDaemonInformer {
 	return &dcpAppDaemonInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
-// DcpIngresses returns a DcpIngressInformer.
-func (v *version) DcpIngresses() DcpIngressInformer {
+// DcpIngresses returns a IngressInformer.
+func (v *version) DcpIngresses() IngressInformer {
 	return &dcpIngressInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
 }

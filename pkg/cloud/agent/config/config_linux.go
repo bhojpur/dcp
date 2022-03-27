@@ -30,6 +30,6 @@ import (
 )
 
 func applyContainerdStateAndAddress(nodeConfig *config.Node) {
-	nodeConfig.Containerd.State = "/run/dcp/containerd"
+	nodeConfig.Containerd.State = "/run/bhojpur/containerd"
 	nodeConfig.Containerd.Address = filepath.Join(nodeConfig.Containerd.State, "containerd.sock")
 }

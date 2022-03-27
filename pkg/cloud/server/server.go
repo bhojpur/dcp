@@ -43,7 +43,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/node"
 	"github.com/bhojpur/dcp/pkg/cloud/nodepassword"
 	"github.com/bhojpur/dcp/pkg/cloud/rootlessports"
-	"github.com/bhojpur/dcp/pkg/cloud/secretsencrypt"
+	"github.com/bhojpur/dcp/pkg/cloud/secretencrypt"
 	"github.com/bhojpur/dcp/pkg/cloud/servicelb"
 	"github.com/bhojpur/dcp/pkg/cloud/static"
 	"github.com/bhojpur/dcp/pkg/cloud/util"

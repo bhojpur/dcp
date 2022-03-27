@@ -447,7 +447,7 @@ provision-server() {
     local ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' $name | tee $TEST_DIR/servers/$count/metadata/ip)
     local url=$(echo "https://$ip:6443" | tee $TEST_DIR/servers/$count/metadata/url)
 
-    echo "Started $name @ $url"
+    echo "Started Bhojpur DCP $name @ $url"
     run-function server-post-hook $count
 }
 export -f provision-server
@@ -470,7 +470,7 @@ provision-agent() {
         ${REGISTRY_CLUSTER_ARGS:-} \
         ${DCP_IMAGE_AGENT:-$DCP_IMAGE} agent $ARGS $AGENT_ARGS ${!AGENT_INSTANCE_ARGS}
 
-    echo "Started $name"
+    echo "Started Bhojpur DCP $name"
     run-function agent-post-hook $count
 }
 export -f provision-agent

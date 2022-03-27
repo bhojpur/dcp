@@ -39,7 +39,7 @@ func main() {
 	for i, flag := range app.Flags {
 		if sFlag, ok := flag.(cli.StringFlag); ok {
 			if sFlag.Name == "address, a" {
-				sFlag.Value = "/run/dcp/containerd/containerd.sock"
+				sFlag.Value = "/run/bhojpur/containerd/containerd.sock"
 				app.Flags[i] = sFlag
 			} else if sFlag.Name == "namespace, n" {
 				sFlag.Value = "bhojpur.net"

@@ -32,7 +32,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/server/config"
 	"github.com/bhojpur/dcp/pkg/engine/cachemanager"
 	"github.com/bhojpur/dcp/pkg/engine/metrics"
 	"github.com/bhojpur/dcp/pkg/engine/transport"

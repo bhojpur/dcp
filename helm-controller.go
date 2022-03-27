@@ -1,5 +1,5 @@
-//go:build !ignore
-// +build !ignore
+//go:build helm-contoller
+// +build helm-contoller
 
 //go:generate go run pkg/helm-contoller/codegen/cleanup/main.go
 //go:generate /bin/rm -rf pkg/helm-contoller/generated

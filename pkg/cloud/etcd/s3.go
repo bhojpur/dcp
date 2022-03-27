@@ -36,7 +36,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bhojpur/dcp/pkg/client/daemons/config"
+	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"github.com/pkg/errors"
@@ -55,7 +55,7 @@ type S3 struct {
 // a new Minio client.
 func NewS3(ctx context.Context, config *config.Control) (*S3, error) {
 	if config.EtcdS3BucketName == "" {
-		return nil, errors.New("s3 bucket name was not set")
+		return nil, errors.New("AWS S3 bucket name was not set")
 	}
 	tr := http.DefaultTransport
 

@@ -38,7 +38,7 @@ type DcpIngressLister interface {
 	// Get retrieves the DcpIngress from the index for a given name.
 	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1alpha1.DcpIngress, error)
-	DcpIngressListerExpansion
+	IngressListerExpansion
 }
 
 // dcpIngressLister implements the DcpIngressLister interface.

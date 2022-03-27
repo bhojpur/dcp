@@ -37,7 +37,7 @@ type DcpAppDaemonLister interface {
 	List(selector labels.Selector) (ret []*v1alpha1.DcpAppDaemon, err error)
 	// DcpAppDaemons returns an object that can list and get DcpAppDaemons.
 	DcpAppDaemons(namespace string) DcpAppDaemonNamespaceLister
-	DcpAppDaemonListerExpansion
+	AppDaemonListerExpansion
 }
 
 // dcpAppDaemonLister implements the DcpAppDaemonLister interface.
@@ -72,7 +72,7 @@ type DcpAppDaemonNamespaceLister interface {
 	// Get retrieves the DcpAppDaemon from the indexer for a given namespace and name.
 	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1alpha1.DcpAppDaemon, error)
-	DcpAppDaemonNamespaceListerExpansion
+	AppDaemonNamespaceListerExpansion
 }
 
 // dcpAppDaemonNamespaceLister implements the DcpAppDaemonNamespaceLister

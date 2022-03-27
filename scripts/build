@@ -101,8 +101,8 @@ if [ ! -x ${INSTALLBIN}/cni ]; then
 )
 fi
 
-echo Building Bhojpur DCP
-CGO_ENABLED=1 "${GO}" build -tags "$TAGS" -ldflags "$VERSIONFLAGS $LDFLAGS $STATIC" -o bin/dcp ./cmd/server/main.go
+echo Building Bhojpur DCP cloud runtime engine
+CGO_ENABLED=1 "${GO}" build -tags "$TAGS" -ldflags "$VERSIONFLAGS $LDFLAGS $STATIC" -o bin/dcp ./cmd/cloud/server/main.go
 ln -s dcp ./bin/dcp-agent
 ln -s dcp ./bin/dcp-server
 ln -s dcp ./bin/dcp-etcd-snapshot

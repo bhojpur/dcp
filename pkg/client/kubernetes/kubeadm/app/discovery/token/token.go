@@ -38,7 +38,7 @@ import (
 	bootstrap "k8s.io/cluster-bootstrap/token/jws"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/pkg/client/cmd/join/joindata"
+	"github.com/bhojpur/dcp/cmd/grid/client/join/joindata"
 	kubeadmapi "github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/apis/kubeadm"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/constants"
 	kubeconfigutil "github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/util/kubeconfig"

@@ -171,7 +171,7 @@ func (c *Controller) Start(stopCh <-chan struct{}) {
 		for c.processNextWorkItem() {
 		}
 	}, time.Second, stopCh)
-	klog.Infof("Started webhook-controller")
+	klog.Infof("Started Bhojpur DCP webhook-controller")
 
 	<-stopCh
 }

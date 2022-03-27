@@ -30,7 +30,7 @@ import (
 	"github.com/pkg/errors"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/pkg/client/cmd/join/joindata"
+	"github.com/bhojpur/dcp/cmd/grid/client/join/joindata"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/constants"
 	kubeadmutil "github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/util"
 	"github.com/bhojpur/dcp/pkg/projectinfo"

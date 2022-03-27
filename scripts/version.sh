@@ -24,7 +24,7 @@ fi
 
 VERSION_CONTAINERD=$(grep github.com/containerd/containerd go.mod | head -n1 | awk '{print $4}')
 if [ -z "$VERSION_CONTAINERD" ]; then
-    VERSION_CONTAINERD="v0.0.0"
+    VERSION_CONTAINERD="v1.6.2"
 fi
 
 VERSION_CRICTL=$(grep github.com/kubernetes-sigs/cri-tools go.mod | head -n1 | awk '{print $4}')
@@ -39,12 +39,12 @@ fi
 
 VERSION_RUNC=$(grep github.com/opencontainers/runc go.mod | head -n1 | awk '{print $4}')
 if [ -z "$VERSION_RUNC" ]; then
-    VERSION_RUNC="v0.0.0"
+    VERSION_RUNC="v1.1.0"
 fi
 
 VERSION_CNIPLUGINS="v1.0.1-dcp"
 
-VERSION_ROOT="v0.11.0"
+VERSION_ROOT="v0.0.2"
 
 if [[ -n "$GIT_TAG" ]]; then
     if [[ ! "$GIT_TAG" =~ ^"$VERSION_K8S"[+-] ]]; then
