@@ -34,7 +34,9 @@ import (
 
 	util2 "github.com/bhojpur/dcp/pkg/cloud/agent/util"
 	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
+	"github.com/bhojpur/dcp/pkg/cloud/untar/tarfile"
 	"github.com/bhojpur/dcp/pkg/cloud/version"
+	"github.com/bhojpur/host/pkg/common/merr"
 	"github.com/containerd/containerd"
 	"github.com/containerd/containerd/errdefs"
 	"github.com/containerd/containerd/images"
@@ -44,8 +46,6 @@ import (
 	"github.com/containerd/containerd/reference/docker"
 	"github.com/natefinch/lumberjack"
 	"github.com/pkg/errors"
-	"github.com/rancher/wharfie/pkg/tarfile"
-	"github.com/rancher/wrangler/pkg/merr"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	runtimeapi "k8s.io/cri-api/pkg/apis/runtime/v1alpha2"

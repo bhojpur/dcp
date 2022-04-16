@@ -28,7 +28,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/cluster"
 	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
 	"github.com/bhojpur/dcp/pkg/cloud/util"
-	coreclient "github.com/rancher/wrangler/pkg/generated/controllers/core/v1"
+	coreclient "github.com/bhojpur/host/pkg/generated/controllers/core/v1"
 	"github.com/sirupsen/logrus"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

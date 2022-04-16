@@ -45,7 +45,7 @@ import (
 	systemd "github.com/coreos/go-systemd/daemon"
 	"github.com/erikdubbelboer/gspt"
 	"github.com/pkg/errors"
-	"github.com/rancher/wrangler/pkg/signals"
+	"github.com/bhojpur/host/pkg/common/signals"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 	utilnet "k8s.io/apimachinery/pkg/util/net"

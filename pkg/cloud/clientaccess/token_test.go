@@ -33,8 +33,8 @@ import (
 
 	"github.com/bhojpur/dcp/pkg/cloud/bootstrap"
 	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
-	"github.com/rancher/dynamiclistener/cert"
-	"github.com/rancher/dynamiclistener/factory"
+	"github.com/bhojpur/dcp/pkg/cloud/dynamiclistener/cert"
+	"github.com/bhojpur/dcp/pkg/cloud/dynamiclistener/factory"
 	"github.com/stretchr/testify/assert"
 )
 

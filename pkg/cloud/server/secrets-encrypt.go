@@ -35,8 +35,8 @@ import (
 
 	"github.com/bhojpur/dcp/pkg/cloud/cluster"
 	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
-	"github.com/bhojpur/dcp/pkg/cloud/secretencrypt"
-	"github.com/rancher/wrangler/pkg/cloud/generated/controllers/core"
+	secretsencrypt "github.com/bhojpur/dcp/pkg/cloud/secretencrypt"
+	"github.com/bhojpur/host/pkg/generated/controllers/core"
 	"github.com/sirupsen/logrus"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

@@ -388,11 +388,11 @@ func updateAddressAnnotations(agentConfig *daemonconfig.Agent, nodeAnnotations m
 
 // setupTunnelAndRunAgent should start the setup tunnel before starting kubelet and kubeproxy
 // there are special case for etcd agents, it will wait until it can find the apiaddress from
-// the address channel and update the proxy with the servers addresses, if in rke2 we need to
+// the address channel and update the proxy with the servers addresses, if in UKE we need to
 // start the agent before the tunnel is setup to allow kubelet to start first and start the pods
 func setupTunnelAndRunAgent(ctx context.Context, nodeConfig *daemonconfig.Node, cfg cmds.Agent, proxy proxy.Proxy) error {
 	var agentRan bool
-	// IsAPIServerLBEnabled is used as a shortcut for detecting RKE2, where the kubelet needs to
+	// IsAPIServerLBEnabled is used as a shortcut for detecting UKE, where the kubelet needs to
 	// be run earlier in order to manage static pods. This should probably instead query a
 	// flag on the executor or something.
 	if cfg.ETCDAgent {

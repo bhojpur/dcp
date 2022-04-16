@@ -29,7 +29,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/etcd"
 	"github.com/bhojpur/dcp/pkg/cloud/util"
 	"github.com/bhojpur/dcp/pkg/cloud/version"
-	controllerv1 "github.com/rancher/wrangler/pkg/generated/controllers/core/v1"
+	controllerv1 "github.com/bhojpur/host/pkg/generated/controllers/core/v1"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	v1 "k8s.io/api/core/v1"
 )

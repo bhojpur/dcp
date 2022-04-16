@@ -32,7 +32,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/agent/templates"
 	util2 "github.com/bhojpur/dcp/pkg/cloud/agent/util"
 	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
-	"github.com/rancher/wharfie/pkg/registries"
+	"github.com/bhojpur/dcp/pkg/cloud/untar/registries"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	runtimeapi "k8s.io/cri-api/pkg/apis/runtime/v1alpha2"

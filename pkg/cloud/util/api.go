@@ -29,9 +29,9 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/bhojpur/host/pkg/common/merr"
+	"github.com/bhojpur/host/pkg/common/schemes"
 	"github.com/pkg/errors"
-	"github.com/rancher/wrangler/pkg/merr"
-	"github.com/rancher/wrangler/pkg/schemes"
 	"github.com/sirupsen/logrus"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

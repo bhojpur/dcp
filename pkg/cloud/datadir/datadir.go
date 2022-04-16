@@ -25,8 +25,8 @@ import (
 	"path/filepath"
 
 	"github.com/bhojpur/dcp/pkg/cloud/version"
+	"github.com/bhojpur/host/pkg/common/resolvehome"
 	"github.com/pkg/errors"
-	"github.com/rancher/wrangler/pkg/resolvehome"
 )
 
 var (

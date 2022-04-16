@@ -32,7 +32,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/token"
 	"github.com/bhojpur/dcp/pkg/cloud/version"
 	"github.com/erikdubbelboer/gspt"
-	"github.com/rancher/wrangler/pkg/signals"
+	"github.com/bhojpur/host/pkg/common/signals"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )

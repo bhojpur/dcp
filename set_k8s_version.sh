@@ -3,7 +3,7 @@ set -euo pipefail
 
 VERSION=${1#"v"}
 if [ -z "$VERSION" ]; then
-    echo "Must specify version!"
+    echo "Must specify Kubernetes version (e.g. v1.23.5) as script arguments"
     exit 1
 fi
 MODS=($(

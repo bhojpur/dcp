@@ -21,9 +21,8 @@ package templates
 // THE SOFTWARE.
 
 import (
-	"github.com/rancher/wharfie/pkg/registries"
-
 	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
+	"github.com/bhojpur/dcp/pkg/cloud/untar/registries"
 )
 
 type ContainerdRuntimeConfig struct {

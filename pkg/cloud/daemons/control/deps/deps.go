@@ -40,10 +40,10 @@ import (
 
 	"github.com/bhojpur/dcp/pkg/cloud/clientaccess"
 	"github.com/bhojpur/dcp/pkg/cloud/daemons/config"
+	certutil "github.com/bhojpur/dcp/pkg/cloud/dynamiclistener/cert"
 	"github.com/bhojpur/dcp/pkg/cloud/passwd"
 	"github.com/bhojpur/dcp/pkg/cloud/token"
 	"github.com/bhojpur/dcp/pkg/cloud/version"
-	certutil "github.com/rancher/dynamiclistener/cert"
 	"github.com/sirupsen/logrus"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/sets"

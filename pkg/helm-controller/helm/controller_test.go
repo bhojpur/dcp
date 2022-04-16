@@ -25,7 +25,7 @@ import (
 	"testing"
 	"time"
 
-	v1 "github.com/bhojpur/dcp/pkg/helm-controller/apis/helm.bhojpur.net/v1"
+	v1 "github.com/bhojpur/dcp/pkg/apis/helm.bhojpur.net/v1"
 	"github.com/stretchr/testify/assert"
 	v12 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"

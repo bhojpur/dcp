@@ -31,7 +31,7 @@ import (
 	"time"
 
 	"github.com/bhojpur/dcp/pkg/cloud/statebase/endpoint"
-	"github.com/rancher/wrangler/pkg/generated/controllers/core"
+	"github.com/bhojpur/host/pkg/generated/controllers/core"
 	utilnet "k8s.io/apimachinery/pkg/util/net"
 	"k8s.io/apiserver/pkg/authentication/authenticator"
 )

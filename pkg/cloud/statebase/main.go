@@ -28,7 +28,7 @@ import (
 
 	"github.com/bhojpur/dcp/pkg/cloud/statebase/endpoint"
 	"github.com/bhojpur/dcp/pkg/cloud/statebase/version"
-	"github.com/rancher/wrangler/pkg/signals"
+	"github.com/bhojpur/host/pkg/common/signals"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )

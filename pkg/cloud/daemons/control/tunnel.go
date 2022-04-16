@@ -27,8 +27,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/rancher/remotedialer"
-	"github.com/rancher/wrangler/pkg/kv"
+	"github.com/bhojpur/dcp/pkg/tunnel/remotedialer"
+	"github.com/bhojpur/host/pkg/common/kv"
 	utilnet "k8s.io/apimachinery/pkg/util/net"
 	"k8s.io/apiserver/pkg/endpoints/request"
 	"k8s.io/kubernetes/cmd/kube-apiserver/app"

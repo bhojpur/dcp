@@ -38,7 +38,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/untar"
 	"github.com/bhojpur/dcp/pkg/cloud/version"
 	"github.com/pkg/errors"
-	"github.com/rancher/wrangler/pkg/resolvehome"
+	"github.com/bhojpur/host/pkg/common/resolvehome"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )

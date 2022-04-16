@@ -24,11 +24,14 @@ import "fmt"
 
 var (
 	// Version is the semver release name of this build
-	Version string
+	Version string = "dev"
 	// Commit is the commit hash this build was created from
 	Commit string
 	// Date is the time when this build was created
 	Date string
+
+	// GitCommit will be overwritten automatically by the build system
+	GitCommit = "HEAD"
 )
 
 // Print writes the version info to stdout
@@ -36,4 +39,14 @@ func Print() {
 	fmt.Printf("Version:    %s\n", Version)
 	fmt.Printf("Commit:     %s\n", Commit)
 	fmt.Printf("Build Date: %s\n", Date)
+}
+
+// FullVersion formats the version to be printed
+func FullVersion() string {
+	return fmt.Sprintf("%s, build %s", Version, GitCommit)
+}
+
+// RC checks if the Machine version is a release candidate or not
+func RC() bool {
+	return strings.Contains(Version, "rc")
 }

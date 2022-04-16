@@ -31,8 +31,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/bhojpur/dcp/pkg/cloud/untar/tarfile"
 	"github.com/klauspost/compress/zstd"
-	"github.com/rancher/wharfie/pkg/tarfile"
 	"github.com/sirupsen/logrus"
 )
 

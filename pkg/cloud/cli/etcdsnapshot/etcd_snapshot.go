@@ -37,7 +37,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/server"
 	util2 "github.com/bhojpur/dcp/pkg/cloud/util"
 	"github.com/erikdubbelboer/gspt"
-	"github.com/rancher/wrangler/pkg/signals"
+	"github.com/bhojpur/host/pkg/common/signals"
 	"github.com/urfave/cli"
 	"gopkg.in/yaml.v2"
 )

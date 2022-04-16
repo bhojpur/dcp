@@ -48,7 +48,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/util"
 	"github.com/bhojpur/dcp/pkg/cloud/version"
 	"github.com/pkg/errors"
-	"github.com/rancher/wrangler/pkg/slice"
+	"github.com/bhojpur/host/pkg/common/slice"
 	"github.com/sirupsen/logrus"
 	"k8s.io/apimachinery/pkg/util/json"
 )

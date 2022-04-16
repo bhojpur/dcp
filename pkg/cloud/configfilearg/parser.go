@@ -32,7 +32,7 @@ import (
 	"strings"
 
 	"github.com/bhojpur/dcp/pkg/cloud/agent/util"
-	"github.com/rancher/wrangler/pkg/data/convert"
+	"github.com/bhojpur/host/pkg/common/data/convert"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 	"gopkg.in/yaml.v2"

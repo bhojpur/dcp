@@ -15,17 +15,29 @@ workloads and assure reliable execution.
 
 ## Building Source Code
 
+After downloading this source code into a local folder, run the following commands to set the
+correct version (e.g., v1.23.5) of `Kubernetes` libraries to avoid source code compilation
+issues. It either updates or upgrades `go.mod` file accordingly.
+
+```bash
+$ set_k8s_version.sh v1.23.5
+$ go mod tidy
+```
+
 You need a `Docker` instance to build from the source code.
 
 ```bash
 $ mkdir -p build/data && make download && make generate
 ```
 
-You can build it using `make` on Linux or Windows
+You can build it locally using `make` on Linux or Windows
 
 ```bash
 $ make
 ```
+
+Alternatively, you can use `task build-cloud-tools` and `task build-grid-tools` to get the
+binary images locally for development purpose.
 
 ## Quick-Start - Install Script
 
@@ -55,7 +67,7 @@ $ curl -sfL https://get.bhojpur.net | DCP_URL=https://myserver:6443 DCP_TOKEN=XX
 ## Manual Download
 
 1. Download `Bhojpur DCP` from latest [release](https://github.com/bhojpur/dcp/releases/latest),
-x86_64, armhf, and arm64 are supported.
+x86_64, arm64, and arm64 are supported.
 
 2. Run the server.
 

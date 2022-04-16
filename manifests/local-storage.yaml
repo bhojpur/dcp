@@ -63,7 +63,7 @@ spec:
             effect: "NoSchedule"
       containers:
       - name: local-path-provisioner
-        image: %{SYSTEM_DEFAULT_REGISTRY}%rancher/local-path-provisioner:v0.0.21
+        image: %{SYSTEM_DEFAULT_REGISTRY}%bhojpur/local-path-provisioner:v0.0.21
         imagePullPolicy: IfNotPresent
         command:
         - local-path-provisioner
@@ -89,7 +89,7 @@ metadata:
   name: local-path
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
-provisioner: rancher.io/local-path
+provisioner: bhojpur.net/local-path
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Delete
 ---
@@ -151,4 +151,4 @@ data:
     spec:
       containers:
       - name: helper-pod
-        image: %{SYSTEM_DEFAULT_REGISTRY}%rancher/mirrored-library-busybox:1.34.1
+        image: %{SYSTEM_DEFAULT_REGISTRY}%bhojpur/mirrored-library-busybox:1.34.1
