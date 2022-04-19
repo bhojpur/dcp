@@ -25,7 +25,7 @@ import (
 	"k8s.io/klog/v2"
 	utilsexec "k8s.io/utils/exec"
 
-	"github.com/bhojpur/dcp/cmd/grid/client/join/joindata"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/join/joindata"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/options"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/phases/workflow"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/preflight"

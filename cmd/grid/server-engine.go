@@ -1,6 +1,3 @@
-//go:build server-engine
-// +build server-engine
-
 // Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,7 +25,7 @@ import (
 	"math/rand"
 	"time"
 
-	cmd "github.com/bhojpur/dcp/cmd/grid/server"
+	cmd "github.com/bhojpur/dcp/cmd/grid/dcpsvr"
 	"k8s.io/apiserver/pkg/server"
 
 	_ "github.com/lib/pq"

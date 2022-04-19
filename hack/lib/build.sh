@@ -91,7 +91,7 @@ build_binaries() {
       echo "Building ${binary}"
       go build -o $(get_output_name $binary) \
           -ldflags "${goldflags:-}" \
-          -gcflags "${gcflags:-}" ${goflags} $DCP_ROOT/cmd/$(canonicalize_target $binary)
+          -gcflags "${gcflags:-}" ${goflags} $DCP_ROOT/cmd/grid/$(canonicalize_target $binary)
     done
 
     if [[ $(host_platform) == ${HOST_PLATFORM} ]]; then

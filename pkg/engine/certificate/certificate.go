@@ -28,7 +28,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/config"
 	"github.com/bhojpur/dcp/pkg/engine/certificate/interfaces"
 )
 

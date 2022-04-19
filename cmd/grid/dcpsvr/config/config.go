@@ -39,7 +39,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/server/options"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/options"
 	dcpcorev1alpha1 "github.com/bhojpur/dcp/pkg/appmanager/apis/apps/v1alpha1"
 	dcpclientset "github.com/bhojpur/dcp/pkg/appmanager/client/clientset/versioned"
 	dcpinformers "github.com/bhojpur/dcp/pkg/appmanager/client/informers/externalversions"

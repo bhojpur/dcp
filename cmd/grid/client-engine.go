@@ -1,6 +1,3 @@
-//go:build client-engine
-// +build client-engine
-
 // Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,7 +23,7 @@ package main
 import (
 	"os"
 
-	cmd "github.com/bhojpur/dcp/cmd/grid/client"
+	cmd "github.com/bhojpur/dcp/cmd/grid/dcpctl"
 
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )

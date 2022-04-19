@@ -46,7 +46,7 @@ import (
 	"k8s.io/client-go/util/certificate"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/config"
 	hubcert "github.com/bhojpur/dcp/pkg/engine/certificate"
 	"github.com/bhojpur/dcp/pkg/engine/certificate/interfaces"
 	"github.com/bhojpur/dcp/pkg/engine/storage"

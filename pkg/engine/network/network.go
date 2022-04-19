@@ -27,7 +27,7 @@ import (
 
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/config"
 )
 
 const (

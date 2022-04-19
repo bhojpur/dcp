@@ -1,4 +1,4 @@
-package cmd
+package dcpsvr
 
 // Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.
 
@@ -28,8 +28,8 @@ import (
 	"github.com/spf13/pflag"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/server/config"
-	"github.com/bhojpur/dcp/cmd/grid/server/options"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/config"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/options"
 	"github.com/bhojpur/dcp/pkg/engine/cachemanager"
 	"github.com/bhojpur/dcp/pkg/engine/certificate"
 	"github.com/bhojpur/dcp/pkg/engine/certificate/hubself"

@@ -31,7 +31,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/client/join/joindata"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/join/joindata"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/options"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/phases/workflow"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/constants"

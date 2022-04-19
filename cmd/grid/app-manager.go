@@ -1,6 +1,3 @@
-//go:build app-manager
-// +build app-manager
-
 package main
 
 // Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.

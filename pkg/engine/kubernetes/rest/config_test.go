@@ -29,7 +29,7 @@ import (
 
 	"k8s.io/client-go/rest"
 
-	"github.com/bhojpur/dcp/cmd/grid/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/config"
 	"github.com/bhojpur/dcp/pkg/engine/certificate/hubself"
 	"github.com/bhojpur/dcp/pkg/engine/certificate/interfaces"
 	"github.com/bhojpur/dcp/pkg/engine/healthchecker"

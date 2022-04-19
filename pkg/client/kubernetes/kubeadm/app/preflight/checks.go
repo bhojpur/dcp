@@ -40,7 +40,7 @@ import (
 	system "k8s.io/system-validators/validators"
 	utilsexec "k8s.io/utils/exec"
 
-	"github.com/bhojpur/dcp/cmd/grid/client/join/joindata"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/join/joindata"
 	kubeadmconstants "github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/constants"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/util/initsystem"
 	utilruntime "github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/util/runtime"

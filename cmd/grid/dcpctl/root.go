@@ -1,4 +1,4 @@
-package client
+package dcpctl
 
 // Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.
 
@@ -29,13 +29,13 @@ import (
 	flag "github.com/spf13/pflag"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/client/clusterinfo"
-	"github.com/bhojpur/dcp/cmd/grid/client/convert"
-	"github.com/bhojpur/dcp/cmd/grid/client/dcpinit"
-	"github.com/bhojpur/dcp/cmd/grid/client/join"
-	"github.com/bhojpur/dcp/cmd/grid/client/markautonomous"
-	"github.com/bhojpur/dcp/cmd/grid/client/reset"
-	"github.com/bhojpur/dcp/cmd/grid/client/revert"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/clusterinfo"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/convert"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/dcpinit"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/join"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/markautonomous"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/reset"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/revert"
 	"github.com/bhojpur/dcp/pkg/projectinfo"
 )
 
@@ -44,7 +44,7 @@ func NewClientCommand() *cobra.Command {
 	version := fmt.Sprintf("%#v", projectinfo.Get())
 	cmds := &cobra.Command{
 		Use:     "dcpctl",
-		Short:   "It controls distributed cloud platform clusters, applications, and services",
+		Short:   "It controls Distributed Cloud Platform clusters, applications, and services",
 		Version: version,
 	}
 

@@ -26,7 +26,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/server/config"
+	"github.com/bhojpur/dcp/cmd/grid/dcpsvr/config"
 	"github.com/bhojpur/dcp/pkg/engine/certificate/interfaces"
 	"github.com/bhojpur/dcp/pkg/engine/healthchecker"
 	"github.com/bhojpur/dcp/pkg/engine/util"

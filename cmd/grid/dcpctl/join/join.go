@@ -35,8 +35,8 @@ import (
 	clientcmdapi "k8s.io/client-go/tools/clientcmd/api"
 	"k8s.io/klog/v2"
 
-	"github.com/bhojpur/dcp/cmd/grid/client/join/joindata"
-	dcpphase "github.com/bhojpur/dcp/cmd/grid/client/join/phases"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/join/joindata"
+	dcpphase "github.com/bhojpur/dcp/cmd/grid/dcpctl/join/phases"
 	dcpconstants "github.com/bhojpur/dcp/pkg/client/constants"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/options"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/phases/workflow"

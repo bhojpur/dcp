@@ -34,7 +34,7 @@ import (
 	"k8s.io/klog/v2"
 	kubeletconfigv1beta1 "k8s.io/kubelet/config/v1beta1"
 
-	"github.com/bhojpur/dcp/cmd/grid/client/join/joindata"
+	"github.com/bhojpur/dcp/cmd/grid/dcpctl/join/joindata"
 	dcpconstants "github.com/bhojpur/dcp/pkg/client/constants"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/options"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/phases/workflow"
@@ -51,7 +51,7 @@ import (
 // NewEdgeNodePhase creates a client workflow phase that start kubelet on a edge node.
 func NewEdgeNodePhase() workflow.Phase {
 	return workflow.Phase{
-		Name:  "Join node to Bhojpur DCP cluster. ",
+		Name:  "Join node to Bhojpur DCP cluster.",
 		Short: "Join node",
 		Run:   runJoinNode,
 		InheritFlags: []string{

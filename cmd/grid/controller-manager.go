@@ -1,6 +1,3 @@
-//go:build controller-manager
-// +build controller-manager
-
 package main
 
 // Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.
@@ -36,7 +33,7 @@ import (
 	// for version metric registration
 	_ "k8s.io/component-base/metrics/prometheus/version"
 
-	"github.com/bhojpur/dcp/cmd/controller-manager/app"
+	app "github.com/bhojpur/dcp/cmd/grid/controller-manager"
 )
 
 func main() {

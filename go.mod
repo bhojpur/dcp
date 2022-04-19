@@ -321,7 +321,7 @@ require (
 	k8s.io/component-helpers v0.23.5
 	k8s.io/controller-manager v0.23.5
 	k8s.io/klog/v2 v2.60.1
-	k8s.io/kube-openapi v0.0.0-20220328201542-3ee0da9b0b42
+	k8s.io/kube-openapi v0.0.0-20220328201542-3ee0da9b0b42 // indirect
 	k8s.io/kubectl v0.23.5
 	k8s.io/metrics v0.23.5 // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9

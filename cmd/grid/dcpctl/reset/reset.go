@@ -30,7 +30,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/klog/v2"
 
-	dcpphases "github.com/bhojpur/dcp/cmd/grid/client/reset/phases"
+	dcpphases "github.com/bhojpur/dcp/cmd/grid/dcpctl/reset/phases"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/options"
 	"github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/cmd/phases/workflow"
 	utilruntime "github.com/bhojpur/dcp/pkg/client/kubernetes/kubeadm/app/util/runtime"
