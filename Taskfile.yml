@@ -12,7 +12,7 @@ tasks:
     build-cloud-tools:
         desc: Build cloud runtime engine software for Bhojpur DCP realization
         cmds:
-        - GOFLAGS=-mod=mod go build -o bin/dcp cmd/cloud/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/cloud cmd/cloud/main.go 
         - chmod 755 bin/cloud
         - cp bin/cloud $GOPATH/bin
         - GOFLAGS=-mod=mod go build -o bin/dcp cmd/cloud/dcp/main.go 
