@@ -1,6 +1,3 @@
-//go:build tunnel-server
-// +build tunnel-server
-
 package main
 
 // Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.

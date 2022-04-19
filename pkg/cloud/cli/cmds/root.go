@@ -40,16 +40,20 @@ var (
 )
 
 func init() {
-	// hack - force "file,dns" lookup order if go dns is used
-	if os.Getenv("RES_OPTIONS") == "" {
-		os.Setenv("RES_OPTIONS", " ")
+	// hack - force "file,dns" lookup order if go DNS is used
+	if os.Getenv("BES_OPTIONS") == "" {
+		os.Setenv("BES_OPTIONS", " ")
 	}
 }
 
 func NewApp() *cli.App {
 	app := cli.NewApp()
 	app.Name = appName
-	app.Usage = "Kubernetes, but small and simple"
+
+	app.Author = "Bhojpur Consulting Private Limited, India"
+	app.Email = "https://www.bhojpur-consulting.com"
+
+	app.Usage = "Bhojpur CLI tool for creating and managing Distributed Cloud Platform instance"
 	app.Version = fmt.Sprintf("%s (%s)", version.Version, version.GitCommit)
 	cli.VersionPrinter = func(c *cli.Context) {
 		fmt.Printf("%s version %s\n", app.Name, app.Version)

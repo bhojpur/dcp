@@ -12,53 +12,53 @@ tasks:
     build-cloud-tools:
         desc: Build cloud runtime engine software for Bhojpur DCP realization
         cmds:
-        - GOFLAGS=-mod=mod go build -o bin/cloud cmd/cloud/main.go 
-        - chmod 755 bin/cloud
-        - cp bin/cloud $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/dcp cmd/cloud/dcp/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcp ./cmd/cloud/dcp/main.go 
         - chmod 755 bin/dcp
         - cp bin/dcp $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/dcp-server cmd/cloud/server/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcp-server ./cmd/cloud/server/main.go 
         - chmod 755 bin/dcp-server
         - cp bin/dcp-server $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/dcp-agent cmd/cloud/agent/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcp-agent ./cmd/cloud/agent/main.go 
         - chmod 755 bin/dcp-agent
         - cp bin/dcp-agent $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/dcp-certificate cmd/cloud/cert/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcp-certificate ./cmd/cloud/cert/main.go 
         - chmod 755 bin/dcp-certificate
         - cp bin/dcp-certificate $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/containerd cmd/cloud/containerd/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/containerd ./cmd/cloud/containerd/main.go 
         - chmod 755 bin/containerd
         - cp bin/containerd $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/ctr cmd/cloud/ctr/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/ctr ./cmd/cloud/ctr/main.go 
         - chmod 755 bin/ctr
         - cp bin/ctr $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/dcp-secrets-encrypt cmd/cloud/encrypt/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcp-secrets-encrypt ./cmd/cloud/encrypt/main.go 
         - chmod 755 bin/dcp-secrets-encrypt
         - cp bin/dcp-secrets-encrypt $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/dcp-etcd-snapshot cmd/cloud/etcsnapshot/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcp-etcd-snapshot ./cmd/cloud/etcsnapshot/main.go 
         - chmod 755 bin/dcp-etcd-snapshot
         - cp bin/dcp-etcd-snapshot $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/kubectl cmd/cloud/kubectl/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/kubectl ./cmd/cloud/kubectl/main.go 
         - chmod 755 bin/kubectl
         - cp bin/kubectl $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/ctrfyle cmd/tools/ctrfyle/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/ctrfyle ./cmd/tools/ctrfyle/main.go 
         - chmod 755 bin/ctrfyle
         - cp bin/ctrfyle $GOPATH/bin
-        - GOFLAGS=-mod=mod go build -o bin/helmctl cmd/tools/helm-controller/main.go 
+        - GOFLAGS=-mod=mod go build -o bin/helmctl ./cmd/tools/helm-controller/main.go 
         - chmod 755 bin/helmctl
         - cp bin/helmctl $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/cloud ./cmd/cloud/main.go 
+        - chmod 755 bin/cloud
+        - cp bin/cloud $GOPATH/bin
 
     build-grid-tools:
         desc: Build the distributed cloud platform management tools
         cmds:
-        - GOFLAGS=-mod=mod go build -o bin/tunnel-server cmd/grid/tunnel-server.go 
-        - GOFLAGS=-mod=mod go build -o bin/tunnel-agent cmd/grid/tunnel-agent.go 
-        - GOFLAGS=-mod=mod go build -o bin/dcpctl cmd/grid/client-engine.go 
-        - GOFLAGS=-mod=mod go build -o bin/dcpsvr cmd/grid/server-engine.go
-        - GOFLAGS=-mod=mod go build -o bin/node-servant cmd/grid/node-servant.go
-        - GOFLAGS=-mod=mod go build -o bin/controller-manager cmd/grid/controller-manager.go
-        - GOFLAGS=-mod=mod go build -o bin/app-manager cmd/grid/app-manager.go
+        - GOFLAGS=-mod=mod go build -o bin/tunnel-server ./cmd/grid/tunnel-server.go 
+        - GOFLAGS=-mod=mod go build -o bin/tunnel-agent ./cmd/grid/tunnel-agent.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcpctl ./cmd/grid/client-engine.go 
+        - GOFLAGS=-mod=mod go build -o bin/dcpsvr ./cmd/grid/server-engine.go
+        - GOFLAGS=-mod=mod go build -o bin/node-servant ./cmd/grid/node-servant.go
+        - GOFLAGS=-mod=mod go build -o bin/controller-manager ./cmd/grid/controller-manager.go
+        - GOFLAGS=-mod=mod go build -o bin/app-manager ./cmd/grid/app-manager.go
 
     build-web-samples:
         desc: Build the web application using wasm

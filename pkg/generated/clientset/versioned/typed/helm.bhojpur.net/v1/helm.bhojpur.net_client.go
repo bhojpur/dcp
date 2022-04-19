@@ -25,29 +25,34 @@ package v1
 import (
 	"net/http"
 
-	v1 "github.com/bhojpur/dcp/pkg/apis/dcp.bhojpur.net/v1"
+	v1 "github.com/bhojpur/dcp/pkg/apis/helm.bhojpur.net/v1"
 	"github.com/bhojpur/dcp/pkg/generated/clientset/versioned/scheme"
 	rest "k8s.io/client-go/rest"
 )
 
-type DcpV1Interface interface {
+type HelmV1Interface interface {
 	RESTClient() rest.Interface
-	AddonsGetter
+	HelmChartsGetter
+	HelmChartConfigsGetter
 }
 
-// DcpV1Client is used to interact with features provided by the dcp.bhojpur.net group.
-type DcpV1Client struct {
+// HelmV1Client is used to interact with features provided by the helm.bhojpur.net group.
+type HelmV1Client struct {
 	restClient rest.Interface
 }
 
-func (c *DcpV1Client) Addons(namespace string) AddonInterface {
-	return newAddons(c, namespace)
+func (c *HelmV1Client) HelmCharts(namespace string) HelmChartInterface {
+	return newHelmCharts(c, namespace)
 }
 
-// NewForConfig creates a new DcpV1Client for the given config.
+func (c *HelmV1Client) HelmChartConfigs(namespace string) HelmChartConfigInterface {
+	return newHelmChartConfigs(c, namespace)
+}
+
+// NewForConfig creates a new HelmV1Client for the given config.
 // NewForConfig is equivalent to NewForConfigAndClient(c, httpClient),
 // where httpClient was generated with rest.HTTPClientFor(c).
-func NewForConfig(c *rest.Config) (*DcpV1Client, error) {
+func NewForConfig(c *rest.Config) (*HelmV1Client, error) {
 	config := *c
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
@@ -59,9 +64,9 @@ func NewForConfig(c *rest.Config) (*DcpV1Client, error) {
 	return NewForConfigAndClient(&config, httpClient)
 }
 
-// NewForConfigAndClient creates a new DcpV1Client for the given config and http client.
+// NewForConfigAndClient creates a new HelmV1Client for the given config and http client.
 // Note the http client provided takes precedence over the configured transport values.
-func NewForConfigAndClient(c *rest.Config, h *http.Client) (*DcpV1Client, error) {
+func NewForConfigAndClient(c *rest.Config, h *http.Client) (*HelmV1Client, error) {
 	config := *c
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
@@ -70,12 +75,12 @@ func NewForConfigAndClient(c *rest.Config, h *http.Client) (*DcpV1Client, error)
 	if err != nil {
 		return nil, err
 	}
-	return &DcpV1Client{client}, nil
+	return &HelmV1Client{client}, nil
 }
 
-// NewForConfigOrDie creates a new DcpV1Client for the given config and
+// NewForConfigOrDie creates a new HelmV1Client for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *DcpV1Client {
+func NewForConfigOrDie(c *rest.Config) *HelmV1Client {
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -83,9 +88,9 @@ func NewForConfigOrDie(c *rest.Config) *DcpV1Client {
 	return client
 }
 
-// New creates a new DcpV1Client for the given RESTClient.
-func New(c rest.Interface) *DcpV1Client {
-	return &DcpV1Client{c}
+// New creates a new HelmV1Client for the given RESTClient.
+func New(c rest.Interface) *HelmV1Client {
+	return &HelmV1Client{c}
 }
 
 func setConfigDefaults(config *rest.Config) error {
@@ -103,7 +108,7 @@ func setConfigDefaults(config *rest.Config) error {
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *DcpV1Client) RESTClient() rest.Interface {
+func (c *HelmV1Client) RESTClient() rest.Interface {
 	if c == nil {
 		return nil
 	}

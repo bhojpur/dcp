@@ -99,14 +99,14 @@ func main() {
 				GenerateTypes:   true,
 				GenerateClients: true,
 			},
-		},
-		"helm.bhojpur.net": {
-			Types: []interface{}{
-				helmv1.HelmChart{},
-				helmv1.HelmChartConfig{},
+			"helm.bhojpur.net": {
+				Types: []interface{}{
+					helmv1.HelmChart{},
+					helmv1.HelmChartConfig{},
+				},
+				GenerateTypes:   true,
+				GenerateClients: true,
 			},
-			GenerateTypes:   true,
-			GenerateClients: true,
 		},
 	})
 }

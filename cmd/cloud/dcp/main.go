@@ -39,6 +39,7 @@ import (
 	"github.com/bhojpur/dcp/pkg/cloud/version"
 	"github.com/pkg/errors"
 	"github.com/bhojpur/host/pkg/common/resolvehome"
+	"github.com/bhojpur/host/pkg/machine/log"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
@@ -88,10 +89,22 @@ func main() {
 				certCommand),
 		),
 	}
+	app.CommandNotFound = cmdNotFound
 
 	if err := app.Run(os.Args); err != nil && !errors.Is(err, context.Canceled) {
 		logrus.Fatal(err)
 	}
+}
+
+func cmdNotFound(c *cli.Context, command string) {
+	log.Errorf(
+		"%s: '%s' is not a %s command. See '%s --help'.",
+		c.App.Name,
+		command,
+		c.App.Name,
+		os.Args[0],
+	)
+	os.Exit(1)
 }
 
 // findDataDir reads data-dir settings from the CLI args and config file.
