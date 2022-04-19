@@ -59,7 +59,7 @@ func main() {
 	secretsencryptCommand := internalCLIAction(version.Program+"-"+cmds.SecretsEncryptCommand, dataDir, os.Args)
 	certCommand := internalCLIAction(version.Program+"-"+cmds.CertCommand, dataDir, os.Args)
 
-	// Handle subcommand invocation (Bhojpur DCP server, dcp crictl, etc)
+	// Handle subcommand invocation (dcp server, dcp crictl, etc)
 	app := cmds.NewApp()
 	app.Commands = []cli.Command{
 		cmds.NewServerCommand(internalCLIAction(version.Program+"-server", dataDir, os.Args)),

@@ -80,7 +80,7 @@ EOF
 download_go() {
     goversion=$(grep "golang:" Dockerfile.dapper | sed -e 's/.*golang:\(.*\)-.*/\1/')
     if [ -z "$goversion" ]; then
-        echo 'Cannot find version of go to fetch'
+        echo 'Cannot find version of Go to fetch'
         return 1
     fi
     echo "Installing go $goversion"

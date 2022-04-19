@@ -175,6 +175,7 @@ github.com/bhojpur/containerd v1.5.10 h1:sR9w6b2CcHDt86j+7DbQ0vhhLOhTgdmjvlkKVvE
 github.com/bhojpur/containerd v1.5.10/go.mod h1:fvQqCfadDGga5HZyn3j4+dx56qj2I9YwBrlSdalvJYQ=
 github.com/bhojpur/cri-tools v1.22.0 h1:hDr2GOTXbh8+twS2xxXWap2rMeMdXH3p8CMRWtBhR90=
 github.com/bhojpur/cri-tools v1.22.0/go.mod h1:06cMrzcMIFKwDJziI2YyLdA0NVzN054GMRRWsL+NRPk=
+github.com/bhojpur/cri-tools v1.23.0-dcp h1:WBtSLurAGudgkDC75BzhStBTy8R/VIYIasPgOx9FD6Q=
 github.com/bhojpur/cri-tools v1.23.0-dcp/go.mod h1:5h7em+0qqcrUelYgOc/0rE9Mzq1wm6lgdnWJwzNiVM8=
 github.com/bhojpur/errors v0.0.2/go.mod h1:mxrP53DdaJ8HB6HZJMTUbK9L7z0PPebKsttyABVG8QA=
 github.com/bhojpur/etcd/api/v3 v3.5.1 h1:8tLnZQaQFiKM3/kUlqvwkQxuHMMvGr0YLBjB4zUZZaw=

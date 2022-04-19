@@ -88,8 +88,20 @@ func main() {
 				cert.Run),
 		),
 	}
+	app.CommandNotFound = cmdNotFound
 
 	if err := app.Run(configfilearg.MustParse(os.Args)); err != nil && !errors.Is(err, context.Canceled) {
 		logrus.Fatal(err)
 	}
+}
+
+func cmdNotFound(c *cli.Context, command string) {
+	log.Errorf(
+		"%s: '%s' is not a %s command. See '%s --help'.",
+		c.App.Name,
+		command,
+		c.App.Name,
+		os.Args[0],
+	)
+	os.Exit(1)
 }

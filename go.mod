@@ -35,7 +35,7 @@ require (
 	github.com/containerd/stargz-snapshotter v0.11.4
 	github.com/google/cadvisor v0.43.0
 	github.com/google/go-containerregistry v0.8.0
-	github.com/kubernetes-sigs/cri-tools v0.0.0-00010101000000-000000000000
+	github.com/kubernetes-sigs/cri-tools v1.23.0
 	github.com/mattn/go-colorable v0.1.12
 	k8s.io/kubernetes v1.23.5
 )
