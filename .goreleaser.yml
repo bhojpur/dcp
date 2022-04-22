@@ -1,6 +1,3 @@
-before:
-  hooks:
-    - go generate -v ./...
 builds:
 - id: dcp
   env:
