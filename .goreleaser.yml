@@ -1,0 +1,61 @@
+before:
+  hooks:
+    - go generate -v ./...
+builds:
+- id: dcp
+  env:
+  - CGO_ENABLED=0
+  main: cmd/cloud/dcp/main.go
+  binary: dcp
+  ldflags:
+  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
+- id: tunnel-server
+  env:
+  - CGO_ENABLED=0
+  main: cmd/grid/tunnel-server.go
+  binary: tunnel-server
+  flags:
+    - -tags=tunnel-server
+  ldflags:
+  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.version={{.Version}}-{{.ShortCommit}}
+archives:
+- id: dcp
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    386: i386
+    amd64: x86_64
+  builds:
+  - dcp
+- id: tunnel-server
+  files:
+  - "none*"
+  format: binary
+  builds:
+  - tunnel-server
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    386: i386
+    amd64: x86_64
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+release:
+  prerelease: auto
+dockers:
+  - goos: linux
+    goarch: amd64
+    goarm: ''
+    dockerfile: Dockerfile
+    image_templates:
+    - "ghcr.io/bhojpur/dcp:{{ .Tag }}"
+    extra_files:
+    - README.md
