@@ -27,22 +27,22 @@ then
    echo "CLUSTER TYPE  is etcd"
    if [[ "$4" == *"v1.18"* ]] || [["$4" == *"v1.17"* ]] && [[ -n "$8" ]]
    then
-       echo "curl -sfL https://dcp.bhojpur.net | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip=${6} $8" >/tmp/master_cmd
-       curl -sfL https://dcp.bhojpur.net | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip="${6}" "$8"
+       echo "curl -sfL https://get.bhojpur.net/dcp/install.sh | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip=${6} $8" >/tmp/master_cmd
+       curl -sfL https://get.bhojpur.net/dcp/install.sh | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip="${6}" "$8"
    else
-       echo "curl -sfL https://dcp.bhojpur.net | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip=${6}" >/tmp/master_cmd
-       curl -sfL https://dcp.bhojpur.net | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip="${6}"
+       echo "curl -sfL https://get.bhojpur.net/dcp/install.sh | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip=${6}" >/tmp/master_cmd
+       curl -sfL https://get.bhojpur.net/dcp/install.sh | INSTALL_DCP_TYPE='server' sh -s - --cluster-init --node-external-ip="${6}"
    fi
 else
    echo "CLUSTER TYPE is external db"
    echo "$8"
    if [[ "$4" == *"v1.18"* ]] || [[ "$4" == *"v1.17"* ]] && [[ -n "$8" ]]
    then
-       echo "curl -sfL https://dcp.bhojpur.net | sh -s - server --node-external-ip=${6} --datastore-endpoint=\"${7}\" $8"  >/tmp/master_cmd
-       curl -sfL https://dcp.bhojpur.net | sh -s - server --node-external-ip="${6}" --datastore-endpoint="${7}" "$8"
+       echo "curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - server --node-external-ip=${6} --datastore-endpoint=\"${7}\" $8"  >/tmp/master_cmd
+       curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - server --node-external-ip="${6}" --datastore-endpoint="${7}" "$8"
    else
-       echo "curl -sfL https://dcp.bhojpur.net | sh -s - server --node-external-ip=${6}  --datastore-endpoint=\"${7}\" "  >/tmp/master_cmd
-       curl -sfL https://dcp.bhojpur.net | sh -s - server --node-external-ip="${6}" --datastore-endpoint="${7}"
+       echo "curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - server --node-external-ip=${6}  --datastore-endpoint=\"${7}\" "  >/tmp/master_cmd
+       curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - server --node-external-ip="${6}" --datastore-endpoint="${7}"
    fi
 fi
 

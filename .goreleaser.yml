@@ -9,13 +9,34 @@ builds:
   binary: dcp
   ldflags:
   - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
-- id: tunnel-server
+- id: containerd
   env:
   - CGO_ENABLED=0
-  main: cmd/grid/tunnel-server.go
-  binary: tunnel-server
+  main: cmd/cloud/containerd/main.go
+  binary: containerd
+  ldflags:
+  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
+- id: ctr
+  env:
+  - CGO_ENABLED=0
+  main: cmd/cloud/ctr/main.go
+  binary: ctr
+  ldflags:
+  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
+- id: ctrfyle
+  env:
+  - CGO_ENABLED=0
+  main: cmd/tools/ctrfyle/main.go
+  binary: ctrfyle
+  ldflags:
+  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
+- id: tunnel-agent
+  env:
+  - CGO_ENABLED=0
+  main: cmd/grid/tunnel-agent.go
+  binary: tunnel-agent
   flags:
-    - -tags=tunnel-server
+    - -tags=tunnel-agent
   ldflags:
   - -s -w -X github.com/bhojpur/dcp/pkg/version/version.version={{.Version}}-{{.ShortCommit}}
 archives:
@@ -27,12 +48,36 @@ archives:
     amd64: x86_64
   builds:
   - dcp
-- id: tunnel-server
+- id: containerd
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    386: i386
+    amd64: x86_64
+  builds:
+  - containerd
+- id: ctr
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    386: i386
+    amd64: x86_64
+  builds:
+  - ctr
+- id: ctrfyle
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    386: i386
+    amd64: x86_64
+  builds:
+  - ctrfyle
+- id: tunnel-agent
   files:
   - "none*"
   format: binary
   builds:
-  - tunnel-server
+  - tunnel-agent
   replacements:
     darwin: Darwin
     linux: Linux

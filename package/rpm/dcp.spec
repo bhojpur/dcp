@@ -12,7 +12,7 @@ Summary: Bhojpur Kubernetes
 
 Group:   System Environment/Base		
 License: ASL 2.0
-URL:     http://bhojpur.net
+URL:     https://bhojpur.net
 
 BuildRequires: systemd
 Requires(post): dcp-selinux >= %{dcp_policyver}

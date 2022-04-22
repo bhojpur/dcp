@@ -22,10 +22,10 @@ fi
 export "${2}"="${3}"
   if [[ "$3" == *"v1.18"* ]] || [["$3" == *"v1.17"* ]] && [[ -n "$7" ]]
 then
-  echo "curl -sfL https://dcp.bhojpur.net | sh -s - agent --node-external-ip=${6} $7" >/tmp/agent_cmd
-curl -sfL https://dcp.bhojpur.net | sh -s - agent --node-external-ip=${6} ${7}
+  echo "curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - agent --node-external-ip=${6} $7" >/tmp/agent_cmd
+curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - agent --node-external-ip=${6} ${7}
   else
 
-echo "curl -sfL https://dcp.bhojpur.net | sh -s - agent --node-external-ip=${6}" >/tmp/agent_cmd
-curl -sfL https://dcp.bhojpur.net | sh -s - agent --node-external-ip=${6}
+echo "curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - agent --node-external-ip=${6}" >/tmp/agent_cmd
+curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -s - agent --node-external-ip=${6}
 fi

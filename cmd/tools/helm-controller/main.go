@@ -30,15 +30,16 @@ import (
 
 	helmv1 "github.com/bhojpur/dcp/pkg/generated/controllers/helm.bhojpur.net"
 	helmcontroller "github.com/bhojpur/dcp/pkg/helm-controller/helm"
+	"github.com/bhojpur/dcp/pkg/version"
 	"github.com/bhojpur/host/pkg/common/apply"
 	"github.com/bhojpur/host/pkg/common/signals"
 	"github.com/bhojpur/host/pkg/common/start"
 	batchv1 "github.com/bhojpur/host/pkg/generated/controllers/batch"
 	corev1 "github.com/bhojpur/host/pkg/generated/controllers/core"
 	rbacv1 "github.com/bhojpur/host/pkg/generated/controllers/rbac"
-	"github.com/bhojpur/dcp/pkg/version"
 	"github.com/bhojpur/host/pkg/machine/log"
 	"github.com/mattn/go-colorable"
+	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 	"k8s.io/client-go/discovery"
 	"k8s.io/client-go/kubernetes"
@@ -147,6 +148,7 @@ func mainErr() error {
 	if err := app.Run(os.Args); err != nil {
 		klog.Fatal(err)
 	}
+	return nil
 }
 
 func run(c *cli.Context) error {

@@ -1,5 +1,6 @@
 //go:generate go run pkg/codegen/cleanup/main.go
 //go:generate rm -rf pkg/generated
+//go:generate go run github.com/go-bindata/go-bindata/go-bindata -o ./pkg/cloud/data/zz_generated_bindata.go -ignore bindata.go -pkg data -modtime 1557785965 -mode 0644 ./build/data/
 //go:generate go run pkg/codegen/main.go
 //go:generate go fmt pkg/cloud/deploy/zz_generated_bindata.go
 //go:generate go fmt pkg/cloud/static/zz_generated_bindata.go

@@ -32,7 +32,7 @@ logs
 /image/main.squashfs
 /package/dcp
 /package/data.tar.zst
-/pkg/cloud/data/zz_generated_bindata.go
+#/pkg/cloud/data/zz_generated_bindata.go
 __pycache__
 /tests/.pytest_cache/
 /tests/.tox/

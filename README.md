@@ -22,9 +22,10 @@ issues. It either updates or upgrades `go.mod` file accordingly.
 ```bash
 $ set_k8s_version.sh v1.23.5
 $ go mod tidy
+$ go get
 ```
 
-You need a `Docker` instance to build from the source code.
+You need either `vagrant`+`virtualbox` or `Docker` instance to build from the source code.
 
 ```bash
 $ mkdir -p build/data && make download && make generate
@@ -41,11 +42,12 @@ binary images locally for development purpose.
 
 ## Quick-Start - Install Script
 
-The `install.sh` script provides a convenient way to download Bhojpur DCP and add a service to systemd
-or openrc. To install `Bhojpur DCP` as a service, run:
+The [`install.sh`](https://get.bhojpur.net/dcp/install.sh) script provides a convenient way to
+download Bhojpur DCP and add a service to systemd or openrc. To install `Bhojpur DCP` as a
+service, run:
 
 ```bash
-$ curl -sfL https://get.bhojpur.net | sh -
+$ curl -sfL https://get.bhojpur.net/dcp/install.sh | sh -
 ```
 
 A kubeconfig file is written to `/etc/bhojpur/dcp/dcp.yaml` and the service is automatically started
@@ -61,7 +63,7 @@ To install on worker nodes, pass `DCP_URL` along with `DCP_TOKEN` or `DCP_CLUSTE
 environment variables. For example:
 
 ```bash
-$ curl -sfL https://get.bhojpur.net | DCP_URL=https://myserver:6443 DCP_TOKEN=XXX sh -
+$ curl -sfL https://get.bhojpur.net/dcp/install.sh | DCP_URL=https://myserver:6443 DCP_TOKEN=XXX sh -
 ```
 
 ## Manual Download

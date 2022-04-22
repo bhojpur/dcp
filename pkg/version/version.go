@@ -20,7 +20,10 @@ package version
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 var (
 	// Version is the semver release name of this build
@@ -46,7 +49,7 @@ func FullVersion() string {
 	return fmt.Sprintf("%s, build %s", Version, GitCommit)
 }
 
-// RC checks if the Machine version is a release candidate or not
+// RC checks if the Bhojpur DCP version is a release candidate or not
 func RC() bool {
 	return strings.Contains(Version, "rc")
 }
