@@ -1,0 +1,95 @@
+name: Control Group
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+      - "channel.yaml"
+      - "install.sh"
+      - "tests/**"
+      - "!tests/cgroup/**"
+      - ".github/**"
+      - "!.github/workflows/cgroup.yaml"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+      - "channel.yaml"
+      - "install.sh"
+      - "tests/**"
+      - "!tests/cgroup/**"
+      - ".github/**"
+      - "!.github/workflows/cgroup.yaml"
+  workflow_dispatch: {}
+jobs:
+  prep:
+    name: "Prepare"
+    runs-on: ubuntu-20.04
+    timeout-minutes: 40
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        with: { fetch-depth: 1 }
+      - name: "Build"
+        run: DOCKER_BUILDKIT=1 SKIP_VALIDATE=1 make
+      - name: "Upload"
+        uses: actions/upload-artifact@v2
+        with: { name: dcp, path: dist/artifacts/dcp }
+  test:
+    name: "Conformance Test"
+    needs: prep
+    # nested virtualization is only available on macOS hosts
+    runs-on: macos-10.15
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        vm: [fedora-34]
+        mode: [unified]
+      max-parallel: 1
+    defaults:
+      run:
+        working-directory: tests/cgroup/${{ matrix.mode }}/${{ matrix.vm }}
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        with: { fetch-depth: 1 }
+      - name: "Download Binary"
+        uses: actions/download-artifact@v2
+        with: { name: dcp, path: dist/artifacts/ }
+      - name: "Vagrant Cache"
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.vagrant.d/boxes
+            ~/.vagrant.d/gems
+          key: cgroup-${{ hashFiles(format('tests/cgroup/{0}/{1}/Vagrantfile', matrix.mode, matrix.vm)) }}
+        id: vagrant-cache
+        continue-on-error: true
+      - name: "Vagrant Plugin(s)"
+        run: vagrant plugin install vagrant-dcp
+      - name: "Vagrant Up"
+        run: vagrant up
+      - name: "DCP Prepare"
+        run: vagrant provision --provision-with=dcp-prepare
+      - name: ⏬ "DCP Install"
+        run: vagrant provision --provision-with=dcp-install
+      - name: ⏩ "DCP Start"
+        run: vagrant provision --provision-with=dcp-start
+      - name: "DCP Ready" # wait for DCP to be ready
+        run: vagrant provision --provision-with=dcp-ready
+      - name: "DCP Status" # kubectl get node,all -A -o wide
+        run: vagrant provision --provision-with=dcp-status
+      - name: "Sonobuoy (--mode=quick)"
+        env: {TEST_RESULTS_PATH: rootfull}
+        run: vagrant provision --provision-with=dcp-sonobuoy
+      - name: "DCP Stop" # stop DCP rootfull
+        run: vagrant ssh -- sudo systemctl stop dcp-server
+      - name: "Vagrant Reload"
+        run: vagrant reload
+      - name: "[Rootless] Starting Bhojpur DCP"
+        run: vagrant ssh -- systemctl --user start dcp-rootless
+      - name: "[Rootless] Bhojpur DCP Ready"
+        env: {TEST_KUBECONFIG: /home/vagrant/.kube/dcp.yaml}
+        run: vagrant provision --provision-with=dcp-ready
+      - name: "[Rootless] Sonobuoy (--mode=quick)"
+        env: {TEST_KUBECONFIG: /home/vagrant/.kube/dcp.yaml, TEST_RESULTS_PATH: rootless}
+        run: vagrant provision --provision-with=dcp-sonobuoy

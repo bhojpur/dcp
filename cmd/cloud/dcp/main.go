@@ -46,11 +46,11 @@ import (
 
 var criDefaultConfigPath = "/etc/crictl.yaml"
 
-// main entrypoint for the Bhojpur DCP multicall binary
+// main entrypoint for the Bhojpur DCP multi-call binary
 func main() {
 	dataDir := findDataDir()
 
-	// Handle direct invocation via symlink alias (multicall binary behavior)
+	// Handle direct invocation via symlink alias (multi-call binary behavior)
 	if runCLIs(dataDir) {
 		return
 	}
