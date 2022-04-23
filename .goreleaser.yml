@@ -31,29 +31,35 @@ builds:
   - -s -w -X github.com/bhojpur/dcp/pkg/version.version={{.Version}}-{{.ShortCommit}}
 archives:
 - id: dcp
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    386: i386
-    amd64: x86_64
   builds:
   - dcp
-- id: statebase
   replacements:
     darwin: Darwin
     linux: Linux
     386: i386
     amd64: x86_64
+- id: statebase
+  files:
+  - "none*"
+  format: binary
   builds:
   - statebase
-- id: ctrfyle
   replacements:
     darwin: Darwin
     linux: Linux
     386: i386
     amd64: x86_64
+- id: ctrfyle
+  files:
+  - "none*"
+  format: binary
   builds:
   - ctrfyle
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    386: i386
+    amd64: x86_64
 - id: tunnel-agent
   files:
   - "none*"
