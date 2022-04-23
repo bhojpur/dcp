@@ -86,7 +86,7 @@ func Listen(ctx context.Context, config Config) (ETCDConfig, error) {
 		return ETCDConfig{}, errors.Wrap(err, "starting statebase backend")
 	}
 
-	// set up GRPC server and register services
+	// set up gRPC server and register services
 	b := server.New(backend, endpointScheme(config))
 	grpcServer, err := grpcServer(config)
 	if err != nil {

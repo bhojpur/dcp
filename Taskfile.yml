@@ -15,6 +15,9 @@ tasks:
         - GOFLAGS=-mod=mod go build -o bin/dcp ./cmd/cloud/dcp/main.go 
         - chmod 755 bin/dcp
         - cp bin/dcp $GOPATH/bin
+        - GOFLAGS=-mod=mod go build -o bin/statebase ./cmd/cloud/statebase/main.go 
+        - chmod 755 bin/statebase
+        - cp bin/statebase $GOPATH/bin
         - GOFLAGS=-mod=mod go build -o bin/containerd ./cmd/cloud/containerd/main.go 
         - chmod 755 bin/containerd
         - cp bin/containerd $GOPATH/bin

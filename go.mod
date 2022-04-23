@@ -60,11 +60,13 @@ require (
 	github.com/hashicorp/go-version v1.3.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.9.1 // indirect
 	github.com/hashicorp/terraform-json v0.13.0 // indirect
+	github.com/intel/goresctrl v0.2.0 // indirect
 	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mattn/go-zglob v0.0.2-0.20190814121620-e3c945676326 // indirect
 	github.com/mitchellh/go-testing-interface v1.0.0 // indirect
 	github.com/moby/spdystream v0.2.0 // indirect
+	github.com/moby/sys/signal v0.6.0 // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/tmccombs/hcl2json v0.3.3 // indirect
 	github.com/ulikunitz/xz v0.5.8 // indirect
@@ -353,7 +355,7 @@ require (
 replace (
 	github.com/Microsoft/hcsshim => github.com/Microsoft/hcsshim v0.8.22
 	github.com/benmoss/go-powershell => github.com/bhojpur/go-powershell v0.0.0-20201118222746-51f4c451fbd7
-	github.com/containerd/containerd => github.com/bhojpur/containerd v1.5.10 // dcp-release/1.5
+	github.com/containerd/containerd => github.com/bhojpur/containerd v1.6.2 // dcp-release/1.6
 	github.com/coreos/flannel => github.com/flannel-io/flannel v0.17.0
 	github.com/coreos/go-systemd => github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e
 	github.com/docker/distribution => github.com/docker/distribution v2.7.1+incompatible

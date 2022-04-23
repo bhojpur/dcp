@@ -21,19 +21,32 @@ package main
 // THE SOFTWARE.
 
 import (
+	"fmt"
 	"context"
 	"errors"
 	"os"
+	"runtime"
 
 	"github.com/bhojpur/dcp/pkg/cloud/cli/cmds"
 	"github.com/bhojpur/dcp/pkg/cloud/cli/secretsencrypt"
 	"github.com/bhojpur/dcp/pkg/cloud/configfilearg"
+	"github.com/bhojpur/host/pkg/machine/log"
+	"github.com/bhojpur/dcp/pkg/version"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
 
 func main() {
 	app := cmds.NewApp()
+	app.Author = "Bhojpur Consulting Private Limited, India"
+	app.Email = "https://www.bhojpur-consulting.com"
+
+	app.Version = fmt.Sprintf("%s (%s)", version.Version, version.GitCommit)
+	cli.VersionPrinter = func(c *cli.Context) {
+		fmt.Printf("%s version %s\n", app.Name, app.Version)
+		fmt.Printf("Go version %s\n", runtime.Version())
+	}
+
 	app.Commands = []cli.Command{
 		cmds.NewSecretsEncryptCommand(cli.ShowAppHelp,
 			cmds.NewSecretsEncryptSubcommands(
@@ -45,8 +58,20 @@ func main() {
 				secretsencrypt.Reencrypt),
 		),
 	}
+	app.CommandNotFound = cmdNotFound
 
 	if err := app.Run(configfilearg.MustParse(os.Args)); err != nil && !errors.Is(err, context.Canceled) {
 		logrus.Fatal(err)
 	}
+}
+
+func cmdNotFound(c *cli.Context, command string) {
+	log.Errorf(
+		"%s: '%s' is not a %s command. See '%s --help'.",
+		c.App.Name,
+		command,
+		c.App.Name,
+		os.Args[0],
+	)
+	os.Exit(1)
 }

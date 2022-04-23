@@ -25,10 +25,12 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"runtime"
 
 	"github.com/bhojpur/dcp/pkg/cloud/statebase/endpoint"
 	"github.com/bhojpur/dcp/pkg/cloud/statebase/version"
 	"github.com/bhojpur/host/pkg/common/signals"
+	"github.com/bhojpur/host/pkg/machine/log"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
@@ -40,8 +42,17 @@ var (
 func main() {
 	app := cli.NewApp()
 	app.Name = "statebase"
+
+	app.Author = "Bhojpur Consulting Private Limited, India"
+	app.Email = "https://www.bhojpur-consulting.com"
+
 	app.Usage = "Minimal etcd v3 API to support custom Kubernetes storage engines"
 	app.Version = fmt.Sprintf("%s (%s)", version.Version, version.GitCommit)
+	cli.VersionPrinter = func(c *cli.Context) {
+		fmt.Printf("%s version %s\n", app.Name, app.Version)
+		fmt.Printf("Go version %s\n", runtime.Version())
+	}
+
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:        "listen-address",
@@ -99,6 +110,7 @@ func main() {
 		cli.BoolFlag{Name: "debug"},
 	}
 	app.Action = run
+	app.CommandNotFound = cmdNotFound
 
 	if err := app.Run(os.Args); err != nil {
 		if !errors.Is(err, context.Canceled) {
@@ -107,15 +119,27 @@ func main() {
 	}
 }
 
+func cmdNotFound(c *cli.Context, command string) {
+	log.Errorf(
+		"%s: '%s' is not a %s command. See '%s --help'.",
+		c.App.Name,
+		command,
+		c.App.Name,
+		os.Args[0],
+	)
+	os.Exit(1)
+}
+
 func run(c *cli.Context) error {
 	if c.Bool("debug") {
 		logrus.SetLevel(logrus.TraceLevel)
 	}
-	ctx := signals.SetupSignalHandler(context.Background())
-	_, err := endpoint.Listen(ctx, config)
+	ctx := signals.SetupSignalHandler()
+	_, err := endpoint.Listen(context.Background(), config)
 	if err != nil {
 		return err
 	}
-	<-ctx.Done()
-	return ctx.Err()
+
+	log.Debugf("%s", ctx)
+	return err
 }

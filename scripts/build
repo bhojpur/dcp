@@ -74,6 +74,7 @@ rm -f \
     bin/dcp-etcd-snapshot \
     bin/dcp-secrets-encrypt \
     bin/dcp-certificate \
+    bin/statebase \
     bin/kubectl \
     bin/crictl \
     bin/ctr \

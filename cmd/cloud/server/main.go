@@ -40,7 +40,9 @@ import (
 	ctr2 "github.com/bhojpur/dcp/pkg/cloud/ctr"
 	kubectl2 "github.com/bhojpur/dcp/pkg/cloud/kubectl"
 	"github.com/docker/docker/pkg/reexec"
-	crictl2 "github.com/kubernetes-sigs/cri-tools/cmd/crictl"
+	crictl2 "github.com/bhojpur/dcp/pkg/cloud/cli/crictl"
+	"github.com/bhojpur/host/pkg/machine/log"
+	"github.com/bhojpur/dcp/pkg/version"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
@@ -61,6 +63,9 @@ func main() {
 	os.Args[0] = cmd
 
 	app := cmds.NewApp()
+	app.Author = "Bhojpur Consulting Private Limited, India"
+	app.Email = "https://www.bhojpur-consulting.com"
+
 	app.Commands = []cli.Command{
 		cmds.NewServerCommand(server.Run),
 		cmds.NewAgentCommand(agent.Run),

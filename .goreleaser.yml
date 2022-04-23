@@ -5,28 +5,21 @@ builds:
   main: cmd/cloud/dcp/main.go
   binary: dcp
   ldflags:
-  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
-- id: containerd
+  - -s -w -X github.com/bhojpur/dcp/pkg/version.Version={{.Version}}-{{.ShortCommit}}
+- id: statebase
   env:
   - CGO_ENABLED=0
-  main: cmd/cloud/containerd/main.go
-  binary: containerd
+  main: cmd/cloud/statebase/main.go
+  binary: statebase
   ldflags:
-  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
-- id: ctr
-  env:
-  - CGO_ENABLED=0
-  main: cmd/cloud/ctr/main.go
-  binary: ctr
-  ldflags:
-  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
+  - -s -w -X github.com/bhojpur/dcp/pkg/version.Version={{.Version}}-{{.ShortCommit}}
 - id: ctrfyle
   env:
   - CGO_ENABLED=0
   main: cmd/tools/ctrfyle/main.go
   binary: ctrfyle
   ldflags:
-  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.Version={{.Version}}-{{.ShortCommit}}
+  - -s -w -X github.com/bhojpur/dcp/pkg/version.Version={{.Version}}-{{.ShortCommit}}
 - id: tunnel-agent
   env:
   - CGO_ENABLED=0
@@ -35,7 +28,7 @@ builds:
   flags:
     - -tags=tunnel-agent
   ldflags:
-  - -s -w -X github.com/bhojpur/dcp/pkg/version/version.version={{.Version}}-{{.ShortCommit}}
+  - -s -w -X github.com/bhojpur/dcp/pkg/version.version={{.Version}}-{{.ShortCommit}}
 archives:
 - id: dcp
   replacements:
@@ -45,22 +38,14 @@ archives:
     amd64: x86_64
   builds:
   - dcp
-- id: containerd
+- id: statebase
   replacements:
     darwin: Darwin
     linux: Linux
     386: i386
     amd64: x86_64
   builds:
-  - containerd
-- id: ctr
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    386: i386
-    amd64: x86_64
-  builds:
-  - ctr
+  - statebase
 - id: ctrfyle
   replacements:
     darwin: Darwin

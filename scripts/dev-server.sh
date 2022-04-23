@@ -12,4 +12,4 @@ if echo -- "$@" | grep -q rootless; then
     ARGS=""
     PATH=$(pwd):$PATH
 fi
-"${GO}" run -tags "apparmor" ../cloud.go server $ARGS "$@"
+"${GO}" run -tags "apparmor" ../cmd/cloud/main.go server $ARGS "$@"
