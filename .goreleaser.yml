@@ -29,6 +29,15 @@ builds:
     - -tags=tunnel-agent
   ldflags:
   - -s -w -X github.com/bhojpur/dcp/pkg/version.version={{.Version}}-{{.ShortCommit}}
+- id: tunnel-server
+  env:
+  - CGO_ENABLED=0
+  main: cmd/grid/tunnel-server.go
+  binary: tunnel-agent
+  flags:
+    - -tags=tunnel-server
+  ldflags:
+  - -s -w -X github.com/bhojpur/dcp/pkg/version.version={{.Version}}-{{.ShortCommit}}
 archives:
 - id: dcp
   builds:
@@ -66,6 +75,17 @@ archives:
   format: binary
   builds:
   - tunnel-agent
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    386: i386
+    amd64: x86_64
+- id: tunnel-server
+  files:
+  - "none*"
+  format: binary
+  builds:
+  - tunnel-server
   replacements:
     darwin: Darwin
     linux: Linux

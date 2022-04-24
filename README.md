@@ -42,6 +42,12 @@ $ make
 Alternatively, you can use `task build-cloud-tools` and `task build-grid-tools` to get the
 binary images locally for development purpose.
 
+### Known Compilation Issues
+
+- `k8s.io/kube-openapi v0.0.0-20211115234752-e816edb12b65` required to resolve `gnostic` issue
+- `github.com/kubernetes-sigs/cri-tools/cmd/crictl` must be made importable by pkg name change
+- `github.com/bhojpur/apiserver-network-proxy` must be `v0.0.22`
+
 ## Quick-Start - Install Script
 
 The [`install.sh`](https://get.bhojpur.net/dcp/install.sh) script provides a convenient way to

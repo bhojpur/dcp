@@ -55,8 +55,8 @@ tasks:
     build-grid-tools:
         desc: Build the distributed cloud platform management tools
         cmds:
-        - GOFLAGS=-mod=mod go build -o bin/tunnel-server ./cmd/grid/tunnel-server.go 
-        - GOFLAGS=-mod=mod go build -o bin/tunnel-agent ./cmd/grid/tunnel-agent.go 
+        - GOFLAGS=-mod=mod go build -o bin/tunnel-agent ./cmd/grid/tunnel-agent.go
+        - GOFLAGS=-mod=mod go build -o bin/tunnel-server ./cmd/grid/tunnel-server.go  
         - GOFLAGS=-mod=mod go build -o bin/dcpctl ./cmd/grid/client-engine.go 
         - GOFLAGS=-mod=mod go build -o bin/dcpsvr ./cmd/grid/server-engine.go
         - GOFLAGS=-mod=mod go build -o bin/node-servant ./cmd/grid/node-servant.go

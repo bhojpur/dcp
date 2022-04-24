@@ -8,7 +8,7 @@
 Name:    dcp
 Version: %{dcp_version}
 Release: %{dcp_release}%{?dist}
-Summary: Bhojpur Kubernetes
+Summary: Bhojpur DCP - Kubernetes Engine
 
 Group:   System Environment/Base		
 License: ASL 2.0
@@ -18,7 +18,7 @@ BuildRequires: systemd
 Requires(post): dcp-selinux >= %{dcp_policyver}
 
 %description
-The certified Kubernetes distribution built for IoT & Edge computing.
+The Bhojpur DCP is a certified Kubernetes Engine distribution built for IoT/M2M & Edge Computing.
 
 %install
 install -d %{buildroot}%{install_path}

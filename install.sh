@@ -19,6 +19,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+#
+# Bhojpur DCP installation software
 
 set -e
 set -o noglob
@@ -113,7 +115,7 @@ set -o noglob
 #     Defaults to 'stable'.
 
 GITHUB_URL=https://github.com/bhojpur/dcp/releases
-STORAGE_URL=https://storage.googleapis.com/bhojpur-ci-builds
+STORAGE_URL=https://storage.googleapis.com/bhojpur-net-platform
 DOWNLOADER=
 
 # --- helper functions for logs ---
@@ -303,7 +305,7 @@ can_skip_download() {
 # --- verify an executable Bhojpur DCP binary is installed ---
 verify_dcp_is_executable() {
     if [ ! -x ${BIN_DIR}/dcp ]; then
-        fatal "Executable dcp binary not found at ${BIN_DIR}/dcp"
+        fatal "Executable Bhojpur DCP binary not found at ${BIN_DIR}/dcp"
     fi
 }
 
@@ -407,14 +409,15 @@ download() {
     [ $? -eq 0 ] || fatal 'Download failed'
 }
 
-# --- download hash from github url ---
+# --- download hash from GitHub URL ---
 download_hash() {
     if [ -n "${INSTALL_DCP_COMMIT}" ]; then
         HASH_URL=${STORAGE_URL}/dcp${SUFFIX}-${INSTALL_DCP_COMMIT}.sha256sum
     else
-        HASH_URL=${GITHUB_URL}/download/${VERSION_DCP}/sha256sum-${ARCH}.txt
+        # HASH_URL=${GITHUB_URL}/download/${VERSION_DCP}/sha256sum-${ARCH}.txt
+        HASH_URL=${GITHUB_URL}/download/${VERSION_DCP}/checksums.txt
     fi
-    info "Downloading hash ${HASH_URL}"
+    info "Downloading Bhojpur DCP release hash from ${HASH_URL}"
     download ${TMP_HASH} ${HASH_URL}
     HASH_EXPECTED=$(grep " dcp${SUFFIX}$" ${TMP_HASH})
     HASH_EXPECTED=${HASH_EXPECTED%%[[:blank:]]*}
