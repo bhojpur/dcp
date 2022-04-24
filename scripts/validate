@@ -1,4 +1,25 @@
 #!/bin/bash
+
+# Copyright (c) 2018 Bhojpur Consulting Private Limited, India. All rights reserved.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
 set -e
 
 cd $(dirname $0)/..
@@ -6,34 +27,34 @@ cd $(dirname $0)/..
 echo Running: go mod tidy
 go mod tidy
 
-echo Running: go generate
+echo "Running: go generate"
 go generate
 
 if [ -n "$SKIP_VALIDATE" ]; then
-    echo Skipping validation
+    echo "Skipping source code validation"
     exit
 fi
 
 if ! command -v golangci-lint; then
-    echo Skipping validation: no golangci-lint available
+    echo "Skipping validation: no golangci-lint available"
     exit
 fi
 
-echo Running validation
-echo Running: go mod verify
+echo "Running validation of Bhojpur DCP source code"
+echo "Running: go mod verify"
 go mod verify
 
 if [ ! -e build/data ];then
     mkdir -p build/data
 fi
 
-echo Running: golangci-lint
+echo "Running: golangci-lint"
 golangci-lint run -v
 
 . ./scripts/version.sh
 
 if [ -n "$DIRTY" ]; then
-    echo Source dir is dirty
+    echo "Source code directory is dirty"
     git status --porcelain --untracked-files=no
     git diff
     exit 1

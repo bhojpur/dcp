@@ -17,9 +17,11 @@ workloads and assure reliable execution.
 
 After downloading this source code into a local folder, run the following commands to set the
 correct version (e.g., v1.23.5) of `Kubernetes` libraries to avoid source code compilation
-issues. It either updates or upgrades `go.mod` file accordingly.
+issues. The `set_k8s_version.sh` either updates or upgrades `go.mod` file accordingly.
 
 ```bash
+$ go clean --cache
+$ go clean --modcache
 $ set_k8s_version.sh v1.23.5
 $ go mod tidy
 $ go get

@@ -40,7 +40,7 @@ import (
 	ctr2 "github.com/bhojpur/dcp/pkg/cloud/ctr"
 	kubectl2 "github.com/bhojpur/dcp/pkg/cloud/kubectl"
 	"github.com/docker/docker/pkg/reexec"
-	crictl2 "github.com/bhojpur/dcp/pkg/cloud/cli/crictl"
+	crictl2 "github.com/kubernetes-sigs/cri-tools/cmd/crictl"
 	"github.com/bhojpur/host/pkg/machine/log"
 	"github.com/bhojpur/dcp/pkg/version"
 	"github.com/sirupsen/logrus"

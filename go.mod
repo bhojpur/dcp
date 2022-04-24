@@ -12,7 +12,7 @@ require (
 	github.com/spf13/cobra v1.4.0
 	go.etcd.io/etcd/api/v3 v3.5.3
 	go.etcd.io/etcd/server/v3 v3.5.3
-	google.golang.org/grpc v1.45.0
+	google.golang.org/grpc v1.46.0
 	google.golang.org/protobuf v1.28.0
 	k8s.io/apiextensions-apiserver v0.23.6 // indirect
 	k8s.io/client-go v12.0.0+incompatible
@@ -43,9 +43,9 @@ require (
 )
 
 require (
-	cloud.google.com/go v0.100.2 // indirect
+	cloud.google.com/go v0.101.0 // indirect
 	cloud.google.com/go/iam v0.3.0 // indirect
-	cloud.google.com/go/storage v1.10.0 // indirect
+	cloud.google.com/go/storage v1.22.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
@@ -55,22 +55,23 @@ require (
 	github.com/containerd/nri v0.1.0 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/google/gnostic v0.6.8 // indirect
-	github.com/hashicorp/go-getter v1.5.9 // indirect
+	github.com/googleapis/go-type-adapters v1.0.0 // indirect
+	github.com/hashicorp/go-getter v1.5.11 // indirect
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
-	github.com/hashicorp/go-version v1.3.0 // indirect
-	github.com/hashicorp/hcl/v2 v2.9.1 // indirect
+	github.com/hashicorp/go-version v1.4.0 // indirect
+	github.com/hashicorp/hcl/v2 v2.12.0 // indirect
 	github.com/hashicorp/terraform-json v0.13.0 // indirect
 	github.com/intel/goresctrl v0.2.0 // indirect
-	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a // indirect
+	github.com/jinzhu/copier v0.3.5 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/mattn/go-zglob v0.0.2-0.20190814121620-e3c945676326 // indirect
-	github.com/mitchellh/go-testing-interface v1.0.0 // indirect
+	github.com/mattn/go-zglob v0.0.3 // indirect
+	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/moby/spdystream v0.2.0 // indirect
-	github.com/moby/sys/signal v0.6.0 // indirect
+	github.com/moby/sys/signal v0.7.0 // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
-	github.com/tmccombs/hcl2json v0.3.3 // indirect
-	github.com/ulikunitz/xz v0.5.8 // indirect
-	github.com/zclconf/go-cty v1.9.1 // indirect
+	github.com/tmccombs/hcl2json v0.3.4 // indirect
+	github.com/ulikunitz/xz v0.5.10 // indirect
+	github.com/zclconf/go-cty v1.10.0 // indirect
 	k8s.io/pod-security-admission v0.23.6 // indirect
 )
 
@@ -91,7 +92,7 @@ require (
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20220418222510-f25a4f6275ed // indirect
 	github.com/armon/circbuf v0.0.0-20190214190532-5111143e8da2 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
-	github.com/aws/aws-sdk-go v1.43.44 // indirect
+	github.com/aws/aws-sdk-go v1.43.45 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/checkpoint-restore/go-criu/v5 v5.3.0 // indirect
 	github.com/clusterhq/flocker-go v0.0.0-20160920122132-2b8b7259d313 // indirect
@@ -149,7 +150,7 @@ require (
 	github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635 // indirect
 	github.com/tchap/go-patricia v2.3.0+incompatible // indirect
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20220101234140-673ab2c3ae75 // indirect
-	github.com/urfave/cli/v2 v2.4.4 // indirect
+	github.com/urfave/cli/v2 v2.4.5 // indirect
 	github.com/vmware/govmomi v0.27.4 // indirect
 	github.com/xlab/treeprint v1.1.0 // indirect
 	go.mozilla.org/pkcs7 v0.0.0-20210826202110-33d05740a352 // indirect
@@ -325,7 +326,7 @@ require (
 	golang.org/x/xerrors v0.0.0-20220411194840-2f41105eb62f // indirect
 	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20220421151946-72621c1f0bd3 // indirect
+	google.golang.org/genproto v0.0.0-20220422154200-b37d22cd5731 // indirect
 	gopkg.in/cheggaaa/pb.v1 v1.0.28
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
